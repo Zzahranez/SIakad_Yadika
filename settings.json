@@ -1,0 +1,12 @@
+{
+  "intelephense.environment.phpVersion": "8.2.12", // Harus sama dengan versi CLI
+  "intelephense.stubs": [
+    "laravel",
+    "eloquent",
+    "psr",
+    "mailchimp",
+    "bcmath"
+  ],
+  "intelephense.diagnostics.undefinedMethods": false,
+  "php.validate.executablePath": "C:/php/php8.2.12/php.exe" // Sesuaikan path PHP Anda
+}
