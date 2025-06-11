@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Kelola Presensi</h2>
+            <h2 class="fw-bold text-dark">Kelola Presensi</h2>
             <p class="text-muted fs-5">Kelola <span class="fw-semibold text-dark">Data Presensi</span></p>
         </div>
     </div>
@@ -22,12 +22,12 @@
     <div class="card shadow-lg  border-0 rounded-3">
         <!-- Card Header -->
         <div
-            class="card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
-            <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
+            class="card-header bg-birumantap bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
+            <h4 class="text-white fw-bold mb-0 d-flex align-items-center">
                 <i class="fas fa-tasks me-2"></i> Daftar Presensi
 
             </h4>
-            <button type="button" class="btn btn-light d-flex align-items-center gap-2" data-bs-toggle="modal"
+            <button type="button" class="btn btn-light d-flex align-items-center gap-2 hover-smooth" data-bs-toggle="modal"
                 data-bs-target="#tambahPembelajaranModal">
                 <i class="fas fa-plus-circle"></i>
                 <span>Tambah</span>
@@ -79,8 +79,8 @@
                 </div>
 
                 <div class="col-12 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Filter</button>
-                    <a href="{{ route('managepresensi.index') }}" class="btn btn-secondary ms-2">Reset</a>
+                    <button type="submit" class="btn bg-birumantap text-white hover-smooth">Filter</button>
+                    <a href="{{ route('managepresensi.index') }}" class="btn btn-secondary ms-2 hover-smooth">Reset</a>
                 </div>
             </form>
             <!-- Form Filter -->

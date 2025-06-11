@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5 mb-3">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Details</h2>
+            <h2 class="fw-bold text-primary"></h2>
         </div>
     </div>
     {{-- Session --}}
@@ -25,23 +25,17 @@
         <!-- Card Header -->
         <div class="d-flex align-items-center mb-3">
             <a href="{{ route('presensisiswa.index') }}"
-                class="btn btn-outline-primary btn-sm rounded-pill shadow-sm px-2 py-1 text-decoration-none">
+                class="btn btn-outline-dark btn-sm rounded-pill shadow-sm px-2 py-1 text-decoration-none mt-2">
                 <i class="fas fa-arrow-left me-1"></i>
                 <span class="fw-semibold"></span>
             </a>
 
-            <div
-                class=" ms-2 card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center flex-grow-1">
-                <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
-                    <i class="fas fa-tasks me-2"></i> Daftar Siswa
-                </h4>
-            </div>
         </div>
 
         <div class="card-body p-lg-4 p-3">
             <div class="text-center mb-4 pt-2">
                 <i class="bi bi-person-check-fill text-primary" style="font-size: 2.5rem;"></i>
-                <h3 class="fw-bolder text-primary mt-2 mb-1">Rekap Presensi Siswa</h3>
+                <h3 class="fw-bolder text-dark mt-2 mb-1">Rekap Presensi Siswa</h3>
                 <p class="text-muted fs-6 mb-3">
                     Berikut adalah rincian statistik kehadiran dari total
                     <span class="fw-bold text-dark">{{ $totalPertemuan }}</span> pertemuan yang telah dilaksanakan.

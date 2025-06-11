@@ -8,11 +8,12 @@
 @endsection
 
 @section('titledash')
-    <div class="row mt-5 mb-3">
-        <div class="col text-center">
-            <h2 class="fw-bold text-primary">Nilai</h2>
+    <div class="row mt-2 mb-3">
+        <div class="col text-start">
+            <h2 class="fw-bold text-dark"></h2>
         </div>
     </div>
+
     {{-- Session --}}
     @include('session.session_pop')
 
@@ -22,17 +23,15 @@
 
     <!-- Star Card -->
     <div class="card shadow-lg  border-0 rounded-3">
-        <!-- Card Header -->
-        <div
-            class="card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
-            <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
-                <i class="fas fa-tasks me-2"></i>
 
-            </h4>
-        </div>
 
         <!-- card body -->
         <div class="card-body p-3 p-lg-4">
+            <div class="row mt-2 mb-3">
+                <div class="col text-start">
+                    <h2 class="fw-bold text-dark">Nilai</h2>
+                </div>
+            </div>
             <!-- Chart Title & Filter -->
             <div class="row mb-3">
                 <div class="col-md-8">
@@ -53,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--chart -->
             <div>
                 <canvas id="myChart"></canvas>
@@ -62,7 +61,7 @@
             <!-- Header Section dengan Gradient -->
             <div class="card shadow mt-4 border-0 overflow-hidden">
                 <div
-                    class="card-body text-center bg-gradient bg-primary text-white fw-bold fs-5 rounded-top d-flex align-items-center justify-content-center gap-2 py-3">
+                    class="card-body text-center bg-gradient bg-birumantap text-white fw-bold fs-5 rounded-top d-flex align-items-center justify-content-center gap-2 py-3">
                     <div class="bg-white bg-opacity-25 rounded-circle p-2">
                         <i class="fas fa-calendar-check text-white"></i>
                     </div>
@@ -90,10 +89,10 @@
                                     <!-- Content Section -->
                                     <div class="col">
                                         <div class="d-flex justify-content-between align-items-start mb-2">
-                                            <h6 class="card-title text-primary mb-0 fw-bold">
+                                            <h6 class="card-title text-dark mb-0 fw-bold">
                                                 {{ $pt->pembelajaran->mapel->nama_mapel }}</h6>
                                             <span
-                                                class="badge bg-primary rounded-pill px-2 py-1">{{ $pt->pembelajaran->kelas->nama_kelas }}</span>
+                                                class="badge bg-birumantap rounded-pill px-2 py-1">{{ $pt->pembelajaran->kelas->nama_kelas }}</span>
                                         </div>
 
                                         <div class="row mb-2">
@@ -125,9 +124,9 @@
                                     <!-- Action Section -->
                                     <div class="col-auto">
                                         <a href="{{ route('nilaiSiswaVisualisasi.show', $pt->id) }}"
-                                            class="btn btn-primary btn-sm rounded-pill px-3 py-1 d-flex align-items-center gap-1">
-                                            <i class="fas fa-chart-bar small"></i>
-                                            <span class="d-none d-md-inline small">Detail</span>
+                                            class="btn bg-birumantap btn-sm rounded-pill px-3 py-1 d-flex align-items-center gap-1">
+                                            <i class="fas fa-chart-bar small text-white"></i>
+                                            <span class="d-none d-md-inline small text-white">Detail</span>
                                         </a>
                                     </div>
                                 </div>

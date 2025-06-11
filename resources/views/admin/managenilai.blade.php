@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5 mb-3">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Admin Kelola Nilai</h2>
+            <h2 class="fw-bold text-dark">Admin Kelola Nilai</h2>
         </div>
     </div>
     {{-- Session --}}
@@ -24,8 +24,8 @@
     <div class="card shadow-lg  border-0 rounded-3">
         <!-- Card Header -->
         <div
-            class="card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
-            <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
+            class="card-header bg-birumantap  bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
+            <h4 class="text-white fw-bold mb-0 d-flex align-items-center">
                 <i class="fas fa-tasks me-2"></i> Daftar Nilai Per Pertemuan
 
             </h4>

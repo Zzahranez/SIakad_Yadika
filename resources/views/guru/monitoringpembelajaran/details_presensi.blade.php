@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5 mb-3">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Tambah Absensi</h2>
+            <h2 class="fw-bold text-primary"></h2>
         </div>
     </div>
     {{-- Session --}}
@@ -24,9 +24,9 @@
     <div class="card shadow-lg  border-0 rounded-3">
         <!-- Card Header -->
         <div
-            class="card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
-            <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
-                <i class="fas fa-tasks me-2"></i> Absensi
+            class="card-header bg-white border-bottom-0 py-3 d-flex justify-content-between align-items-center">
+            <h4 class="text-dark fw-bold mb-0 d-flex align-items-center">
+                 Absensi Siswa 
 
             </h4>
         </div>
@@ -179,13 +179,13 @@
                 </div>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
-                    <button type="submit" class="btn btn-primary btn-lg px-5 py-3 fw-bold text-uppercase"
+                    <button type="submit" class="btn bg-birumantap btn-sm px-5 py-3 fw-bold text-uppercase hover-glow text-white"
                         style="letter-spacing: 1px;">
                         <i class="bi bi-save me-2"></i>Simpan Presensi
                     </button>
                 </div>
             </form>
-
+ 
             <script>
                 // Tangkap radio "centang semua" - SCRIPT ASLI TIDAK DIUBAH
                 document.querySelectorAll('input[name="status_all"]').forEach(radio => {

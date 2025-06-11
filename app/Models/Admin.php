@@ -27,4 +27,7 @@ class Admin extends Model
     {
         return $this->morphOne(User::class, 'userable');
     }
+    public function pengumuman(){
+        return $this->hasMany(Pengumuman::class);
+    }
 }

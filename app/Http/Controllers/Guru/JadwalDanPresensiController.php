@@ -71,7 +71,6 @@ class JadwalDanPresensiController extends Controller
                     'pertemuan_id' => $id,
                     'siswa_id' => $siswa_id,
                     'status' => $status,
-                    // tambahkan kolom lain jika perlu, misal 'nilai' dll
                 ]);
             }
 
@@ -82,7 +81,7 @@ class JadwalDanPresensiController extends Controller
 
         $namesString = implode(', ', $updatedNames);
 
-        return redirect()->back()->with('success', "Absen berhasil diupdate pada siswa berikut: $namesString");
+        return redirect()->route('presensidannilai.index')->with('success', "Absen berhasil diupdate pada siswa berikut: $namesString");
     }
 
 

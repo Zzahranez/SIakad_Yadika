@@ -137,6 +137,11 @@ Route::get('ManageNilaiSiswa/index', [ManageNilai::class, 'index'])->name('manag
 Route::get('ManageNilaiSiswa/show/{id}', [ManageNilai::class, 'show'])->name('managenilai.show');
 Route::put('ManageNilaiSiswa/update/{id}', [ManageNilai::class, 'update'])->name('managenilai.update');
 
+//Pengumuman
+Route::post('DashboardSiswa/index/store', [DashboardAdminController::class, 'storePengumuman'])->name('admindash.storePengumuman');
+Route::delete('DashboardSiswa/index/delete/{id}', [DashboardAdminController::class, 'destroyPengumuman'])->name('admindash.destroyPengumuman');
+Route::put('DashboardSiswa/index/update/{id}', [DashboardAdminController::class, 'updatePengumuman'])->name('admindash.EditPengumuman');
+
 //Testing API
 Route::get('/makanan', [MakananController::class, 'index'])->name('makanan.index');
 Route::get('/makanan/show/{id}', [MakananController::class, 'show'])->name('makanan.show');

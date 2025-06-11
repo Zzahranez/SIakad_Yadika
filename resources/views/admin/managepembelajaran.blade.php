@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Kelola Proses Pembelajaran</h2>
+            <h2 class="fw-bold text-dark">Kelola Proses Pembelajaran</h2>
             <p class="text-muted fs-5">Kelola <span class="fw-semibold text-dark">Data Akademik</span> Pembelajaran</p>
         </div>
     </div>

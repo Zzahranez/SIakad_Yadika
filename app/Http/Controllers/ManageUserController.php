@@ -196,7 +196,6 @@ class ManageUserController extends Controller
 
         $request->validate([
             'email' => 'required|string|max:255',
-            'password' => 'required|string',
             'role' => 'required|in:siswa,guru,admin',
         ]);
 

@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5 mb-3">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Monitoring Pembelajran</h2>
+            <h2 class="fw-bold text-primary"></h2>
         </div>
     </div>
     {{-- Session --}}
@@ -24,9 +24,9 @@
     <div class="card shadow-lg  border-0 rounded-3">
         <!-- Card Header -->
         <div
-            class="card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
-            <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
-                <i class="fas fa-tasks me-2"></i> Tambah Pertemuan Kelas
+            class="card-header bg-white bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
+            <h4 class="text-dark fw-bold mb-0 d-flex align-items-center">
+                Tambah Pertemuan Kelas
 
             </h4>
         </div>
@@ -37,10 +37,10 @@
             <!-- select kelas -->
             <div class="mb-3">
                 <label for="select-kelas" class="form-label fw-semibold">
-                    <i class="fas fa-book me-2 text-primary"></i>
+                    <i class="fas fa-book me-2 text-dark"></i>
                     Pilih Kelas yang Diampu
                 </label>
-                <select name="kelas_mapel" id="select-kelas" class="form-select overflow-auto" >
+                <select name="kelas_mapel" id="select-kelas" class="form-select overflow-auto">
                     <option value="" selected disabled>Kelas yang diampu</option>
                     @foreach ($guru_mengajar as $ja)
                         <option value="{{ $ja->id }}">
@@ -53,10 +53,9 @@
 
             <!-- hidden form -->
             <div class="mt-3" style="display: none;" id="form-pertemuan">
-                <div class="card border-0 bg-primary bg-opacity-10">
-                    <div class="card-header bg-primary text-white py-2">
+                <div class="card border-0 bg-light bg-opacity-10">
+                    <div class="card-header bg-birumantap text-white py-2 mt-3">
                         <h5 class="mb-0 fw-semibold">
-                            <i class="fas fa-calendar-plus me-2"></i>
                             Tambah Pertemuan
                         </h5>
                     </div>
@@ -125,8 +124,8 @@
 
                             <!-- Submit Button -->
                             <div class="d-flex justify-content-center">
-                                <button class="btn btn-primary px-4 py-2 fw-semibold" type="submit">
-                                    <i class="fas fa-plus-circle me-2"></i>
+                                <button class="btn bg-birumantap px-4 py-2 fw-semibold text-white hover-smooth" type="submit">
+                                    <i class="fas fa-plus-circle me-2 text-white"></i>
                                     Tambah Pertemuan
                                 </button>
                             </div>

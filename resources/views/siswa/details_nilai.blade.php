@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5 mb-3">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Detail Nilai</h2>
+            <h2 class="fw-bold text-primary"></h2>
         </div>
     </div>
     {{-- Session --}}
@@ -24,21 +24,25 @@
     <div class="card shadow-lg  border-0 rounded-3">
         <!-- Card Header -->
         <!-- Card Header -->
-        <div class="d-flex align-items-center mb-3">
+        <div class="d-flex align-items-center mb-3 mt-2">
             <a href="{{ route('nilaiSiswaVisualisasi.index') }}"
-                class="btn btn-outline-primary btn-sm rounded-pill shadow-sm px-2 py-1 text-decoration-none">
+                class="btn btn-outline-dark btn-sm rounded-pill shadow-sm px-2 py-1 text-decoration-none">
                 <i class="fas fa-arrow-left me-1"></i>
                 <span class="fw-semibold"></span>
             </a>
 
             <div
-                class=" ms-2 card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center flex-grow-1">
-                <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
-                    <i class="fas fa-tasks me-2"></i>
+                class=" ms-2 card-header bg-white bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center flex-grow-1">
+                <h4 class="text-white fw-bold mb-0 d-flex align-items-center">
+          
                 </h4>
             </div>
         </div>
-
+        <div class="row mt-2 mb-3">
+            <div class="col text-start">
+                <h2 class="fw-bold text-dark">Details Nilai</h2>
+            </div>
+        </div>
         <!-- card body -->
         <div class="card-body p-3 p-lg-4">
             <!--Stats Card -->
@@ -90,7 +94,7 @@
                             </div>
                             <div>
                                 <h6 class="text-secondary">Total hadir</h6>
-                                <h5 class="fw-bold text-dark">{{$siswa_hadir}}</h5>
+                                <h5 class="fw-bold text-dark">{{ $siswa_hadir }}</h5>
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Kelola Kelas</h2>
+            <h2 class="fw-bold text-dark">Kelola Kelas</h2>
             <p class="text-muted fs-5">Kelola <span class="fw-semibold text-dark">Data dan Informasi</span> Pengguna</p>
         </div>
     </div>
@@ -25,7 +25,7 @@
     <!-- Navigation Tabs -->
     <ul class="nav nav-tabs mb-1" id="profileTabs" role="tablist">
         <li class="nav-guru" role="presentation">
-            <button class="nav-link active text-dark" id="managekelas-tab" data-bs-toggle="tab"
+            <button class="nav-link  text-dark" id="managekelas-tab" data-bs-toggle="tab"
                 data-bs-target="#managekelas" type="button" role="tab" aria-controls="managekelas"
                 aria-selected="true">
                 <i class="fas fa-chalkboard-teacher me-2"></i>Kelola Kelas

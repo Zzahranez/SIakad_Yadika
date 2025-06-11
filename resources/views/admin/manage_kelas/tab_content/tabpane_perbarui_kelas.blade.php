@@ -5,7 +5,7 @@
                 <div class="col-md-10">
                     <!-- Class Selection Form -->
                     <div class="form-group mb-3">
-                        <label for="kelas_id" class="form-label fw-bold text-primary">
+                        <label for="kelas_id" class="form-label fw-bold text-dark">
                             <i class="fas fa-chalkboard me-2"></i>Pilih Kelas
                         </label>
                         <select class="form-select shadow-sm" name="kelas_id" id="kelas_id">
@@ -79,7 +79,7 @@
                         <input type="hidden" name="kelas_lama_id" value="${kelasId}">
                         
                         <div class="card mb-4 shadow-lg">
-                            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <div class="card-header bg-birumantap text-white d-flex justify-content-between align-items-center">
                                 <h5 class="mb-0"><i class="fas fa-users me-2"></i>Daftar Siswa</h5>
                                 <div class="form-check form-switch">
                                     <input type="checkbox" id="check-all" class="form-check-input" role="switch"> 
@@ -92,7 +92,7 @@
                                     <table class="table table-hover table-striped align-middle mb-0">
                                         <thead class="table-light">
                                             <tr>
-                                                <th scope="col" class="text-center">#</th>
+                                                <th scope="col" class="text-center">No</th>
                                                 <th scope="col">Nama Siswa</th>
                                                 <th scope="col" class="text-center">Pilih</th>
                                             </tr>
@@ -103,7 +103,7 @@
                                                                             <td class="text-center">${index + 1}</td>
                                                                             <td>
                                                                                 <div class="d-flex align-items-center">
-                                                                                    <span class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                                                                                    <span class="bg-birumantap text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
                                                                                         ${s.nama.charAt(0).toUpperCase()}
                                                                                     </span>
                                                                                     <span>${s.nama}</span>
@@ -121,7 +121,7 @@
                             </div>
                             <div class="card-footer bg-light d-flex justify-content-between align-items-center">
                                 <div>
-                                    <span class="badge bg-primary rounded-pill">${data.siswa.length}</span> siswa ditemukan
+                                    <span class="badge bg-birumantap rounded-pill">${data.siswa.length}</span> siswa ditemukan
                                 </div>
                                 <div class="fw-bold" id="selected-counter">
                                     0 siswa dipilih

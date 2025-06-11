@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembelajaran;
+use App\Models\Pengumuman;
 use App\Models\Pertemuan;
 use App\Models\Presensi;
 use Carbon\Carbon;
@@ -27,6 +28,7 @@ class DashboardSiswaController extends Controller
         $nilaiRataAll = $this->getNilaiRataAll();
         $pertemuanberlangsung = $this->getPertemuanBerlangsung($siswa_id);
         $kehadiran = $this->getKehadiran();
+        $pengumuman = $this->getPengumuman();
 
         //Grafik
         $nilaiPerKelas = $this->getNilaiRataperKelas();
@@ -35,7 +37,7 @@ class DashboardSiswaController extends Controller
 
         $jumlahkehadirankelasperpembelajaran = $this->getJumlahKehadiranPerPembelajaranByUser();
         $data_totalpembelajaranKelas = $jumlahkehadirankelasperpembelajaran->pluck('total_kehadiran');
-  
+   
         return view(
             'dashboardsiswa',
             [
@@ -47,6 +49,7 @@ class DashboardSiswaController extends Controller
                 'nilairataAll' => $nilaiRataAll,
                 'pertemuanberlangsung' => $pertemuanberlangsung,
                 'kehadiran' => $kehadiran,
+                'pengumuman' => $pengumuman, 
                 //Grafik
                 'labels' => $labels,
                 'data' => $data,
@@ -190,6 +193,10 @@ class DashboardSiswaController extends Controller
             )
             ->groupBy('pembelajaran.id', 'kelas.nama_kelas', 'mapel.nama_mapel')
             ->get();
+    }
+
+    public function getPengumuman(){
+        return Pengumuman::with('admin')->orderBy('created_at', 'desc')->paginate(3);
     }
 
     

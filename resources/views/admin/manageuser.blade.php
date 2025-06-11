@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mb-4 mt-5">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Manage Users</h2>
+            <h2 class="fw-bold text-dark">Manage Users</h2>
             <p class="text-muted fs-5">Kelola <span class="fw-semibold text-dark">Data dan Informasi</span> Pengguna</p>
         </div>
     </div>
@@ -28,7 +28,7 @@
                     <div class="input-group">
                         <input type="text" name="search" class="form-control rounded-start"
                             placeholder="Cari nama atau email..." value="{{ request('search') }}" aria-label="Search">
-                        <button type="submit" class="btn btn-primary  rounded-end hover-glow">
+                        <button type="submit" class="btn bg-birumantap text-white  rounded-end hover-glow">
                             <i class="fas fa-search me-1 hover-smooth"></i>
                         </button>
                     </div>
@@ -37,7 +37,7 @@
         </div>
         {{-- End search --}}
         <div class="card shadow shadow-lg ">
-            <div class="card-header bg-primary bg-gradient d-flex justify-content-between align-items-center p-3 ">
+            <div class="card-header bg-birumantap text-white bg-gradient d-flex justify-content-between align-items-center p-3 ">
                 <h4 class="text-white mb-0 fw-semibold">
                     <i class="fas fa-users me-2"></i>Daftar Users
                 </h4>

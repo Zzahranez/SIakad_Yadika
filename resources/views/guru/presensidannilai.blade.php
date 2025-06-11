@@ -12,7 +12,7 @@
         <div class="col text-center">
             <div class="text-center mb-4 pt-2">
                 <i class="bi bi-person-check-fill text-primary" style="font-size: 2.5rem;"></i>
-                <h3 class="fw-bolder text-primary mt-2 mb-1">Daftar Mata Pelajaran</h3>
+                <h3 class="fw-bolder text-dark mt-2 mb-1">Daftar Mata Pelajaran</h3>
                 <p class="text-muted fs-6 mb-3">
                     Berikut adalah daftar mata pelajaran
                     <span class="fw-bold text-dark"></span> dan kelas yang anda ampu.
@@ -31,8 +31,8 @@
     <div class="card shadow-lg  border-0 rounded-3">
         <!-- Card Header -->
         <div
-            class="card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
-            <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
+            class="card-header bg-white bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
+            <h4 class="text-dark fw-bold mb-0 d-flex align-items-center">
                 <i class="fas fa-tasks me-2"></i>
 
             </h4>
@@ -45,7 +45,7 @@
                 <ul class="list-group list-group-flush">
                     <!-- FOREACH LOOP DIMULAI DI SINI -->
                     @foreach ($pembelajaran as $pb)
-                        <li class="list-group-item p-3 hover-glow"
+                        <li class="list-group-item p-3 hover-glow mb-2"
                             onmouseover="this.classList.add('bg-primary-subtle', 'border-start', 'border-primary', 'border-3'); this.querySelector('.hidden-badge').classList.remove('d-none')"
                             onmouseout="this.classList.remove('bg-primary-subtle', 'border-start', 'border-primary', 'border-3'); this.querySelector('.hidden-badge').classList.add('d-none')">
                             <a href="{{ route('presensidannilai.show', $pb->id) }}"

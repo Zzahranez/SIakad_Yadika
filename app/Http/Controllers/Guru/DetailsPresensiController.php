@@ -41,7 +41,7 @@ class DetailsPresensiController extends Controller
                 'status' => $status,
             ]);
         }
-
-        return redirect()->route('JadwalPresensiGuru.index')->with('success', 'Siswa berhasil diabsensi');
+ 
+        return redirect()->route('nilaisiswa.index')->with('success', 'Siswa berhasil diabsensi');
     }
 }

@@ -11,6 +11,10 @@
     <!-- Untuk Animasi -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
+    {{-- Font  --}}
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=nunito:400,600,700" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/trix@1.3.1/dist/trix.css">
     <style>
         /* Modal untuk Mobile */
         @media (max-width: 576px) {
@@ -54,7 +58,7 @@
         /* Efek untuk nav-link aktif */
         /* ========================= */
         .nav-link.active {
-            background-color: #ebeef023;
+            background-color: #1b4577;
             color: white;
             font-weight: bold;
             border-radius: 10%;
@@ -82,7 +86,7 @@
 
         .nav-link:hover {
             transform: translateY(2px) rotateX(5deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px #1b4577;
             cursor: pointer;
             border-bottom: none !important;
         }
@@ -94,7 +98,7 @@
             left: 0;
             width: 100%;
             height: 0;
-            background: rgba(165, 173, 182, 0.167);
+            background: #1b4577;
             transition: height 0.35s ease;
             z-index: -1;
         }
@@ -102,6 +106,22 @@
         .nav-link:hover:after {
             height: 100%;
         }
+
+        /* Pastikan isi dalam nav-link mewarisi warna */
+        .nav-link i,
+        .nav-link span {
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        /* Saat aktif atau hover, ubah warna isi jadi putih */
+        .nav-link.active i,
+        .nav-link.active span,
+        .nav-link:hover i,
+        .nav-link:hover span {
+            color: white;
+        }
+
 
         /* Khusus untuk dropdown: nonaktifkan liquid fill, pertahankan efek 3D */
         /* Dipisahkan menjadi dua bagian: dropdown icon dan liquid fill effect */
@@ -128,7 +148,7 @@
 
         .nav-link.dropdown-toggle:hover {
             transform: translateY(2px) rotateX(5deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
             border-bottom: none !important;
         }
 
@@ -175,7 +195,7 @@
         .nav-link.dropdown-active {
             border-left: 4px solid #ffffff !important;
             padding-left: 8px !important;
-            background-color: rgba(255, 255, 255, 0.1) !important;
+            background-color: #1b4577 !important;
             font-weight: 600 !important;
         }
 
@@ -187,7 +207,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background-color: #ffffff;
+            background-color: #1b4577;
             opacity: 0.7;
         }
 
@@ -202,7 +222,7 @@
         .dropdown-menu-dark .dropdown-item:active {
             background-color: rgba(255, 255, 255, 0.15) !important;
             /* Putih dengan opasitas rendah */
-            color: #ffffff !important;
+            color: #1b4577 !important;
             /* Text tetap putih */
             font-weight: 600 !important;
             /* Sedikit lebih tebal untuk emphasis */
@@ -251,7 +271,7 @@
 
         .hover-multi:hover {
             transform: translateY(-4px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
             filter: brightness(1.02);
         }
 
@@ -267,7 +287,7 @@
 
         .hover-smooth:hover {
             transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.12);
         }
 
         .hover-glow {
@@ -284,13 +304,28 @@
         /* ========BACKGROUND DAN TEXT======= */
         /* ================================== */
 
-        .bg-birumantap{
-            background-color: #2d65b2 ! important;
-        }
-        .text-birumantap{
-            color: #2d65b2 !important;
+        .bg-birumantap {
+            background-color: #1b4577 ! important;
+            text-color: white !important;
         }
 
+        .bg-sidebar {
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.90);
+            box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.10);
+        }
+
+        /* Reset hover effect untuk tab navigation */
+        .nav-tabs .nav-link:hover {
+            transform: none !important;
+            box-shadow: none !important;
+            border-bottom: 1px solid #000000 !important;
+        }
+
+        .nav-tabs .nav-link.active:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
     </style>
 
 </head>
@@ -298,22 +333,17 @@
 <body class="bg-light">
     {{-- Library chart js --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/trix@1.3.1/dist/trix.js"></script>
     <div class="container-fluid">
         <!-- Dengan Warna -->
-        {{-- <div class="row bg-black text-white py-5 rounded-5 "
-            style="min-height: 350px; background: linear-gradient(135deg, #3c6399 0%, #4f75ad 30%, #aabbd1 50%, #ffffff 60%, #777777 80%, #000000 100%);">
-            <div class="col text-center">
-                <!-- Header content -->
-            </div>
-        </div> --}}
-
         <!-- Opsi 2 Recomend kalau cuma mau nampilin-->
         <div class="row text-white py-5 rounded-2 responsive-header"
             style=" 
             background-image: url('{{ asset('SMA_image.jpeg') }}');
             background-size: 100% 100%;
             background-position: center;
-            background-repeat: no-repeat;">
+            background-repeat: no-repeat;
+            height : 359px;">
             <div class="col text-center">
                 <!-- Tambahkan overlay untuk readability -->
 

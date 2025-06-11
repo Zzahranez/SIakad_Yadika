@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Kelola Mata Pelajaran</h2>
+            <h2 class="fw-bold text-dark">Kelola Mata Pelajaran</h2>
             <p class="text-muted fs-5">Kelola <span class="fw-semibold text-dark">Data dan Informasi</span> Mata Pelajaran</p>
         </div>
     </div>
@@ -25,8 +25,8 @@
                 <div class="card shadow-lg  border-0 rounded-3">
                     <!-- Card Header -->
                     <div
-                        class="card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
-                        <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
+                        class="card-header bg-birumantap bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
+                        <h4 class="text-white fw-bold mb-0 d-flex align-items-center">
                             <i class="fas fa-book me-2"></i> Daftar Mata Pelajaran
                         </h4>
                         <button type="button" class="btn btn-light d-flex align-items-center gap-2" data-bs-toggle="modal"

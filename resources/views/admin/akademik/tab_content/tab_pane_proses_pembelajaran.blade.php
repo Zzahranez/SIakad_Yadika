@@ -1,11 +1,11 @@
 <!-- Redesigned Card Grid Layout -->
 <div class="card border-0 shadow rounded-4 mb-5">
-    <div class="card-header bg-primary bg-opacity-10 border-bottom-0 py-4 px-4">
+    <div class="card-header bg-birumantap bg-opacity-10 border-bottom-0 py-4 px-4">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-            <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
+            <h4 class="text-white fw-bold mb-0 d-flex align-items-center">
                 <i class="fas fa-tasks me-2"></i> Daftar Jadwal Guru Mengajar
             </h4>
-            <button type="button" class="btn btn-primary btn-sm d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#tambahPembelajaranModal">
+            <button type="button" class="btn bg-white text-dark btn-sm d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#tambahPembelajaranModal">
                 <i class="fas fa-plus-circle"></i>
                 <span>Tambah</span>
             </button>
@@ -32,7 +32,7 @@
                         <!-- Card Header with Gradient Overlay -->
                         <div class="card-header bg-primary bg-opacity-10 border-0 p-3 position-relative">
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary rounded-pill px-3 py-2 fs-6 fw-medium">{{ $loop->iteration }}</span>
+                                <span class="badge bg-birumantap text-white rounded-pill px-3 py-2 fs-6 fw-medium">{{ $loop->iteration }}</span>
                                 <div class="dropdown" style="z-index: 1050;">
                                     <button class="btn btn-outline-dark btn-sm rounded-circle shadow-sm" type="button" id="dropdownMenuButton-{{ $item_pemb->id }}" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v"></i>
@@ -54,9 +54,10 @@
                             <!-- Subtle Gradient Overlay for Visual Depth -->
                             <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(13, 110, 253, 0.1) 0%, rgba(255, 255, 255, 0) 100%); z-index: 1;"></div>
                         </div>
+                         
                         <!-- Card Body -->
                         <div class="card-body p-4">
-                            <h5 class="card-title text-primary fw-bold mb-3">{{ $item_pemb->kelas->nama_kelas }}</h5>
+                            <h5 class="card-title text-dark fw-bold mb-3">{{ $item_pemb->kelas->nama_kelas }}</h5>
                             <p class="card-text mb-2 text-muted d-flex align-items-center gap-2">
                                 <i class="fas fa-user-tie text-success fs-5"></i>
                                 <span>{{ $item_pemb->guru->nama }}</span>

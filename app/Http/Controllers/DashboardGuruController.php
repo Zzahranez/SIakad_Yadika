@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengumuman;
 use App\Models\Pertemuan;
 use App\Models\Presensi;
 use Carbon\Carbon;
@@ -15,6 +16,7 @@ class DashboardGuruController extends Controller
         $nama_user = Auth::user();
         $guru_id = Auth::user()->userable->id;
         $tahunandSemester = $this->getSemesterAndTahun();
+        $pengumuman = $this->getPengumuman();
 
         //StatsCard
         $jmlh_pertemuan = $this->getPertemuanBerlangsung();
@@ -40,6 +42,7 @@ class DashboardGuruController extends Controller
             'jmlh_pertemuan' => $jmlh_pertemuan,
             'presentase_kehadiran' => $presentase_kehadiran,
             'presentase_nilaiSiswa' => $presentase_Nilai,
+            'pengumuman' => $pengumuman,
             //Grafik
             'labels_pie' => $nilaipermapel->pluck('mapel')->values()->all(),
             'data_pie' => $nilaipermapel->pluck('Rata-rata')->values()->all(),
@@ -179,5 +182,9 @@ class DashboardGuruController extends Controller
             ->orderBy('nilai', 'desc')->paginate(5);
 
         return $nilai_tertinggi;
+    }
+
+    public function getPengumuman(){
+        return Pengumuman::with('admin')->orderBy('created_at', 'desc')->paginate(3);
     }
 }

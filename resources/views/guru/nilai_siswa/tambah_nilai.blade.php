@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5 mb-3">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Input Nilai Siswa</h2>
+            <h2 class="fw-bold text-primary"></h2>
         </div>
     </div>
     {{-- Session --}}
@@ -24,16 +24,16 @@
     <div class="card shadow-lg  border-0 rounded-3">
         <!-- Card Header -->
         <div class="d-flex align-items-center mb-3">
-            <a href="{{route('nilaisiswa.index')}}"
-                class="btn btn-outline-primary btn-sm rounded-pill shadow-sm px-2 py-1 text-decoration-none">
+            <a href="{{ route('nilaisiswa.index') }}"
+                class="btn btn-outline-dark btn-sm rounded-pill shadow-sm px-2 py-1 text-decoration-none">
                 <i class="fas fa-arrow-left me-1"></i>
                 <span class="fw-semibold"></span>
             </a>
 
             <div
-                class=" ms-2 card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center flex-grow-1">
-                <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
-                    <i class="fas fa-tasks me-2"></i> Input Nilai Siswa
+                class=" ms-2 card-header bg-white bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center flex-grow-1">
+                <h4 class="text-dark fw-bold mb-0 d-flex align-items-center">
+                    Input Nilai Siswa
                 </h4>
             </div>
         </div>
@@ -44,7 +44,7 @@
             <!-- Header Info -->
             <div class="row align-items-center mb-4">
                 <div class="col">
-                    <h5 class="mb-1 text-primary"><i class="fas fa-clipboard-list me-2"></i>Input Nilai Siswa</h5>
+                    <h5 class="mb-1 text-dark"><i class="fas fa-clipboard-list me-2"></i>Input Nilai Siswa</h5>
                     <div class="d-flex flex-wrap gap-3">
                         <div>
                             <small class="text-muted d-block">Mata Pelajaran</small>
@@ -79,7 +79,8 @@
                             </button>
                         </div>
                         <div class="col-auto">
-                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="setAllValues(false,80)">
+                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                onclick="setAllValues(false,80)">
                                 <i class="fas fa-thumbs-up me-1"></i>Set Semua 80
                             </button>
                         </div>
@@ -168,7 +169,7 @@
 
             <!--Javascript untuk set -->
             <script>
-                function setAllValues(random = false,value) {
+                function setAllValues(random = false, value) {
                     const inputs = document.querySelectorAll('input[data-updatable="true"]');
                     inputs.forEach(input => {
                         if (random) {

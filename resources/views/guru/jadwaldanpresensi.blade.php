@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5 mb-3">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Monitoring Nilai Dan Presensi</h2>
+            <h2 class="fw-bold text-primary"></h2>
         </div>
     </div>
     {{-- Session --}}
@@ -24,10 +24,9 @@
     <div class="card shadow-lg  border-0 rounded-3">
         <!-- Card Header -->
         <div
-            class="card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
-            <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
-                <i class="fas fa-tasks me-2"></i> Jadwal Mengajar Guru
-
+            class="card-header bg-white border-bottom-0 py-3 d-flex justify-content-between align-items-center">
+            <h4 class="text-dark fw-bold mb-0 d-flex align-items-center">
+                Jadwal Mengajar Guru
             </h4>
         </div>
 
@@ -38,7 +37,7 @@
                 {{-- Jadwal Mengajar --}}
                 <div class="col-md-6">
                     <div class="card shadow-sm">
-                        <div class="card-header bg-primary text-white fw-bold">
+                        <div class="card-header bg-birumantap text-white fw-bold">
                             Jadwal Mengajar
                         </div>
                         <div class="card-body p-3">
@@ -67,7 +66,7 @@
                 {{-- Pertemuan --}}
                 <div class="col-md-6">
                     <div class="card shadow-sm">
-                        <div class="card-header bg-primary text-white fw-bold">
+                        <div class="card-header bg-birumantap text-white fw-bold">
                             Pertemuan
                         </div>
                         <div class="card-body p-3">
@@ -84,7 +83,11 @@
 
                                             <div class="flex-grow-1">
                                                 <h6 class="mb-1 fw-bold">{{ $pt->materi }}</h6>
+                                                
                                                 <small class="text-muted">
+                                                    <i
+                                                        class="fas fa-school me-1"></i>{{ $pt->pembelajaran->kelas->nama_kelas }}
+                                                    •
                                                     <i
                                                         class="fas fa-book me-1"></i>{{ $pt->pembelajaran->mapel->nama_mapel }}
                                                     •

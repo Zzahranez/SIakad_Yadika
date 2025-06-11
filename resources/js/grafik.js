@@ -2,9 +2,8 @@
 function buatGrafikBatang() {
     const ctx = document.getElementById('myChart').getContext('2d');
 
-    const labels = {!! json_encode($labels)!!
+
 };
-const data = {!! json_encode($data)!!};
 
 new Chart(ctx, {
     type: 'bar',
@@ -34,15 +33,14 @@ new Chart(ctx, {
         }
     }
 });
-        }
+
 
 // Buat grafik garis
 function buatGrafikGaris() {
     const ctx = document.getElementById('myChart2').getContext('2d');
 
-    const labels = {!! json_encode($labels)!!
 };
-const data = {!! json_encode($data)!!};
+
 
 new Chart(ctx, {
     type: 'line',
@@ -71,15 +69,15 @@ new Chart(ctx, {
         }
     }
 });
-        }
+        
 
 // Buat grafik donat
 function buatGrafikDonat() {
     const ctx = document.getElementById('myChart3').getContext('2d');
 
-    const labels = {!! json_encode($labels)!!
+
 };
-const data = {!! json_encode($data)!!}
+
 
 new Chart(ctx, {
     type: 'doughnut',
@@ -108,7 +106,7 @@ new Chart(ctx, {
         }
     }
 });
-        }
+
 
 buatGrafikBatang()
 

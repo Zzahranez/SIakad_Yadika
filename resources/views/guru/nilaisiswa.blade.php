@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5 mb-3">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Nilai Siswa Untuk Pertemuan</h2>
+            <h2 class="fw-bold text-primary"></h2>
         </div>
     </div>
     {{-- Session --}}
@@ -19,15 +19,12 @@
 @endsection
 
 @section('Table')
-
     <!-- Star Card -->
     <div class="card shadow-lg  border-0 rounded-3">
         <!-- Card Header -->
         <div
-            class="card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
-            <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
-                <i class="fas fa-tasks me-2"></i> Pertemuan terakhir yang dilaksanakan
-
+            class="card-header bg-white bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
+            <h4 class="text-dark fw-bold mb-0 d-flex align-items-center">Pertemuan terakhir yang dilaksanakan
             </h4>
         </div>
 
@@ -38,7 +35,7 @@
                 @foreach ($pertemuan as $pt)
                     <div class="list-group-item border-0 d-flex justify-content-between align-items-start">
                         <div class="me-auto">
-                            <div class="fw-bold text-primary">{{ $pt->pembelajaran->mapel->nama_mapel }}</div>
+                            <div class="fw-bold text-dark">{{ $pt->pembelajaran->mapel->nama_mapel }}</div>
                             <div class="mb-1">
                                 <span class="badge bg-secondary me-2">{{ $pt->pembelajaran->kelas->nama_kelas }}</span>
                                 <span class="text-muted">{{ $pt->tanggal }} | {{ $pt->jam_mulai }} -
@@ -46,7 +43,8 @@
                             </div>
                             <div class="text-muted">{{ $pt->materi }}</div>
                         </div>
-                        <a href="{{ route('nilaisiswa.showTambahNilai', $pt->id) }}" class="btn btn-sm btn-primary ms-2 hover-smooth">
+                        <a href="{{ route('nilaisiswa.showTambahNilai', $pt->id) }}"
+                            class="btn btn-sm btn-primary ms-2 hover-smooth">
                             <i class="fas fa-edit"></i>Input/Edit Nilai
                         </a>
                     </div>

@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5 mb-3">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Details Pertemuan</h2>
+            <h2 class="fw-bold text-primary"></h2>
         </div>
     </div>
     {{-- Session --}}
@@ -25,15 +25,15 @@
         <!-- Card Header -->
         <div class="d-flex align-items-center mb-3">
             <a href="{{ route('JadwalPresensiGuru.index') }}"
-                class="btn btn-outline-primary btn-sm rounded-pill shadow-sm px-2 py-1 text-decoration-none">
+                class="btn btn-outline-dark btn-sm rounded-pill shadow-sm px-2 py-1 text-decoration-none">
                 <i class="fas fa-arrow-left me-1"></i>
                 <span class="fw-semibold"></span>
             </a>
 
             <div
-                class=" ms-2 card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center flex-grow-1">
-                <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
-                    <i class="fas fa-tasks me-2"></i> Daftar Siswa
+                class=" ms-2 card-header bg-white bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center flex-grow-1">
+                <h4 class="text-dark fw-bold mb-0 d-flex align-items-center">
+                     Daftar Siswa
                 </h4>
             </div>
         </div>
@@ -186,8 +186,8 @@
                     </table>
                     <div class="mt-3 text-end">
 
-                        <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-pencil-square me-1"></i> Edit Presensi
+                        <button type="submit" class="btn bg-birumantap text-white">
+                            <i class="fas fa-edit me-1"></i> Edit Presensi
                         </button>
                     </div>
             </form>

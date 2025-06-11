@@ -10,7 +10,7 @@
 @section('titledash')
     <div class="row mt-5 mb-3">
         <div class="col text-center">
-            <h2 class="fw-bold text-primary">Kehadiran</h2>
+            <h2 class="fw-bold text-primary"></h2>
         </div>
     </div>
     {{-- Session --}}
@@ -24,10 +24,8 @@
     <div class="card shadow-lg  border-0 rounded-3 hover-smooth">
         <!-- Card Header -->
         <div
-            class="card-header bg-primary bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
-            <h4 class="text-primary fw-bold mb-0 d-flex align-items-center">
-                <i class="fas fa-tasks me-2"></i> Daftar Kehadiran
-
+            class="card-header bg-white bg-opacity-10 border-bottom-0 py-3 d-flex justify-content-between align-items-center">
+            <h4 class="text-whie fw-bold mb-0 d-flex align-items-center">
             </h4>
         </div>
 
@@ -35,7 +33,7 @@
         <div class="card-body p-3 p-lg-4">
 
             <div class="mb-3 text-center">
-                <h4 class="card-title mb-2 fw-bold text-primary"> <i class="bi bi-collection-fill me-2"></i>Ringkasan
+                <h4 class="card-title mb-2 fw-bold text-dark"> <i class="bi bi-collection-fill me-2"></i>Ringkasan
                     Kehadiran per Mata Pelajaran
                 </h4>
                 <p class="fs-6 text-muted mb-0">Berikut adalah rincian kehadiran Anda untuk setiap mata pelajaran yang
