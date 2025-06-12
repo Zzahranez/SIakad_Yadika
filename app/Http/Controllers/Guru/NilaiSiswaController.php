@@ -12,8 +12,10 @@ class NilaiSiswaController extends Controller
     public function index()
     {
 
-        $guru = Auth::user()->userable;
-        $pertemuan = Pertemuan::with(['presensi', 'pembelajaran.kelas', 'pembelajaran.mapel'])->orderBy('created_at', 'desc')->paginate(7);
+        $pertemuan = Pertemuan::with(['presensi', 'pembelajaran.kelas', 'pembelajaran.mapel'])
+                    ->orderBy('created_at', 'desc')
+                    ->where('created_at', '>=', now()->subMinute(3))
+                    ->paginate(7);
         return view('guru.nilaisiswa', [
             'pertemuan' => $pertemuan,
         ]);

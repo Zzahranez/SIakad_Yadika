@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardGuruController;
 use App\Http\Controllers\DashboardSiswaController;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\Guru\DetailsPresensiController;
 use App\Http\Controllers\Guru\InformasiAkademikController;
 use App\Http\Controllers\Guru\JadwalDanPresensiController;
@@ -113,6 +114,8 @@ Route::resource('manageuser', ManageUserController::class);
 //ManageKelas
 Route::resource('managekelas', ManageKelas::class);
 Route::post('managekelas/naikKelas', [LuluskanDanMoreKelasController::class, 'naikKelas'])->name('managekelas.naikKelas');
+
+
 //Luluskansiswa
 Route::get('kelulusansiswa/index', [LuluskanDanMoreKelasController::class, 'index'])->name('kelulusansiswashow');
 Route::post('kelulusansiswa/luluskanSiswa', [LuluskanDanMoreKelasController::class, 'luluskanSiswa'])->name('manageuser.luluskanSiswa');
@@ -126,6 +129,13 @@ Route::resource('managepembelajaran', PembelajaranController::class);
 
 //Manage Pertemuan
 Route::resource('managepertemuan', PertemuanController::class);
+
+//FilteringPembelajaran
+Route::get('/filter/pembelajaran', [FilterController::class, 'filterPembelajaran'])->name('filter.pembelajaran');
+Route::get('/filter/pertemuan', [FilterController::class, 'filterPertemuan'])->name('filter.pertemuan');
+
+//Filtering Nilai
+Route::get('ManageNilaiSiswa/filter/nilai', [FilterController::class, 'filterNilai'])->name('filter.nilai');
 
 //Manage Presensi
 Route::get('/managepresensi/index', [ManagePresensiController::class, 'index'])->name('managepresensi.index');

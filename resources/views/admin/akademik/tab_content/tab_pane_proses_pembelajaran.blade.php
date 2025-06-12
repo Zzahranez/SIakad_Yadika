@@ -5,11 +5,64 @@
             <h4 class="text-white fw-bold mb-0 d-flex align-items-center">
                 <i class="fas fa-tasks me-2"></i> Daftar Jadwal Guru Mengajar
             </h4>
-            <button type="button" class="btn bg-white text-dark btn-sm d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#tambahPembelajaranModal">
+            <button type="button" class="btn bg-white text-dark btn-sm d-flex align-items-center gap-2"
+                data-bs-toggle="modal" data-bs-target="#tambahPembelajaranModal">
                 <i class="fas fa-plus-circle"></i>
                 <span>Tambah</span>
             </button>
         </div>
+    </div>
+
+    <div class=" px-4">
+        <!-- Form Filter -->
+        <form action="{{ route('filter.pembelajaran') }}" method="GET" class="row g-3 mb-4">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="kelas_id" class="form-label">Kelas</label>
+                    <select name="kelas_id" id="kelas_id" class="form-control">
+                        <option value="">Tanpa Filter</option>
+                        @foreach ($kelas as $item)
+                            <option value="{{ $item->id }}"
+                                {{ request('kelas_id') == $item->id ? 'selected' : '' }}>
+                                {{ $item->nama_kelas }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="guru_id" class="form-label">Guru</label>
+                    <select name="guru_id" id="guru_id" class="form-control">
+                        <option value="">Tanpa Filter</option>
+                        @foreach ($guru as $item)
+                            <option value="{{ $item->id }}" {{ request('guru_id') == $item->id ? 'selected' : '' }}>
+                                {{ $item->nama }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="mapel_id" class="form-label">Mata Pelajaran</label>
+                    <select name="mapel_id" id="mapel_id" class="form-control">
+                        <option value="">Tanpa Filter</option>
+                        @foreach ($mapels as $item)
+                            <option value="{{ $item->id }}"
+                                {{ request('mapel_id') == $item->id ? 'selected' : '' }}>
+                                {{ $item->nama_mapel }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 ms-auto d-flex justify-content-end gap-2">
+                <button type="submit" class="btn bg-birumantap text-white hover-smooth w-50">Filter</button>
+                <a href="{{ route('managepembelajaran.index') }}"
+                    class="btn btn-secondary text-white hover-smooth w-50">Reset</a>
+            </div>
+        </form>
     </div>
     <div class="card-body p-4">
         <!-- Error Alerts -->
@@ -23,7 +76,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-
         <!-- Card Grid -->
         <div class="row g-4">
             @foreach ($pembelajaran as $item_pemb)
@@ -32,19 +84,27 @@
                         <!-- Card Header with Gradient Overlay -->
                         <div class="card-header bg-primary bg-opacity-10 border-0 p-3 position-relative">
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-birumantap text-white rounded-pill px-3 py-2 fs-6 fw-medium">{{ $loop->iteration }}</span>
+                                <span
+                                    class="badge bg-birumantap text-white rounded-pill px-3 py-2 fs-6 fw-medium">{{ $loop->iteration }}</span>
                                 <div class="dropdown" style="z-index: 1050;">
-                                    <button class="btn btn-outline-dark btn-sm rounded-circle shadow-sm" type="button" id="dropdownMenuButton-{{ $item_pemb->id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-outline-dark btn-sm rounded-circle shadow-sm" type="button"
+                                        id="dropdownMenuButton-{{ $item_pemb->id }}" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
                                         <i class="fas fa-ellipsis-v"></i>
                                     </button>
-                                    <ul class="dropdown-menu dropdown-menu-end shadow rounded-3 p-2" aria-labelledby="dropdownMenuButton-{{ $item_pemb->id }}">
+                                    <ul class="dropdown-menu dropdown-menu-end shadow rounded-3 p-2"
+                                        aria-labelledby="dropdownMenuButton-{{ $item_pemb->id }}">
                                         <li>
-                                            <a class="dropdown-item d-flex align-items-center gap-2 py-2 px-3 rounded-2 text-primary" href="#" data-bs-toggle="modal" data-bs-target="#editPembModal-{{ $item_pemb->id }}">
+                                            <a class="dropdown-item d-flex align-items-center gap-2 py-2 px-3 rounded-2 text-primary"
+                                                href="#" data-bs-toggle="modal"
+                                                data-bs-target="#editPembModal-{{ $item_pemb->id }}">
                                                 <i class="fas fa-edit"></i> Edit
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item d-flex align-items-center gap-2 py-2 px-3 rounded-2 text-danger" href="#" data-bs-toggle="modal" data-bs-target="#hapusPembelajaranModal-{{ $item_pemb->id }}">
+                                            <a class="dropdown-item d-flex align-items-center gap-2 py-2 px-3 rounded-2 text-danger"
+                                                href="#" data-bs-toggle="modal"
+                                                data-bs-target="#hapusPembelajaranModal-{{ $item_pemb->id }}">
                                                 <i class="fas fa-trash"></i> Hapus
                                             </a>
                                         </li>
@@ -52,9 +112,11 @@
                                 </div>
                             </div>
                             <!-- Subtle Gradient Overlay for Visual Depth -->
-                            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(13, 110, 253, 0.1) 0%, rgba(255, 255, 255, 0) 100%); z-index: 1;"></div>
+                            <div class="position-absolute top-0 start-0 w-100 h-100"
+                                style="background: linear-gradient(180deg, rgba(13, 110, 253, 0.1) 0%, rgba(255, 255, 255, 0) 100%); z-index: 1;">
+                            </div>
                         </div>
-                         
+
                         <!-- Card Body -->
                         <div class="card-body p-4">
                             <h5 class="card-title text-dark fw-bold mb-3">{{ $item_pemb->kelas->nama_kelas }}</h5>
@@ -70,7 +132,7 @@
                             <hr class="border-primary border-opacity-25">
                             <small class="text-muted d-flex align-items-center gap-2">
                                 <i class="fas fa-calendar-alt text-secondary"></i>
-                                <span>Jadwal: {{ $item_pemb->updated_at->format('d M Y') }}</span>
+                                <span>Terakhir diubah: {{ $item_pemb->updated_at->format('d M Y') }}</span>
                             </small>
                         </div>
                         <!-- Card Footer with Action Indicator -->
@@ -89,7 +151,7 @@
         </div>
     </div>
 
-   @include('pagination_footer_card', ['collection' => $pembelajaran])
+    @include('pagination_footer_card', ['collection' => $pembelajaran])
 </div>
 
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->time('jam_mulai');
             $table->time('jam_selesai');
             $table->string('materi');
+            $table->enum('status', ['sedang_berlangsung', 'selesai'])->default('sedang_berlangsung');
             $table->timestamps();
         });
     }

@@ -22,7 +22,7 @@ class PembelajaranController extends Controller
         $kelas = Kelas::all();
         $guru = Guru::all();
         $mapels = Mapel::all();
-        $pertemuan = Pertemuan::with('pembelajaran')->paginate(8);
+        $pertemuan = Pertemuan::with(['pembelajaran.guru', 'pembelajaran.mapel', 'pembelajaran.kelas'])->paginate(8);
         
         return view('admin.managepembelajaran', [
             'pembelajaran' => $pembelajaran,

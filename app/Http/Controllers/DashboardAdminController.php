@@ -19,7 +19,6 @@ class DashboardAdminController extends Controller
         $admin = Auth::user();
         $semesterandyear = $this->getSemesterandTahunAkademik();
         $jumlahSiswa = $this->getJumlahSiswa();
-        $presentaseKehadiran = $this->getPresentaseKehadiranSiswa();
         $jumlahGuru = $this->getJumlahGuru();
         $gender_siswa = $this->getJumlahSiswaBerdasarkanGender();
         $siswaTerbaru = $this->getSiswaTerbaru();
@@ -30,7 +29,6 @@ class DashboardAdminController extends Controller
             'semester' => $semesterandyear['semester'],
             'tahun_akademik' => $semesterandyear['tahun_akademik'],
             'jumlahSiswa' => $jumlahSiswa,
-            'presentaseKehadiran' => $presentaseKehadiran,
             'jumlahguru' => $jumlahGuru,
             'siswaterbaru' => $siswaTerbaru,
             'pengumuman' => $pengumuman,
@@ -66,27 +64,8 @@ class DashboardAdminController extends Controller
         return Siswa::where('status', 'aktif')->count();
     }
 
-    public  function getPresentaseKehadiranSiswa()
-    {
-        $totalKehadiran = Presensi::with(['pertemuan.pembelajaran', 'siswa'])
-            ->where('status', 'hadir')
-            ->whereRelation('siswa', 'status',  'aktif')
-            ->count();
+   
 
-        $totalTidakHadir = Presensi::with('pertemuan')
-            ->where('status', '!=', 'hadir')
-            ->count();
-        $total = $totalKehadiran + $totalTidakHadir;
-
-        if ($total != 0) {
-            $presentase = round(($totalKehadiran / $total) * 100, 2);
-        } else {
-            $presentase = 0; // atau bisa juga null, tergantung kebutuhan
-        }
-
-
-        return $presentase;
-    }
 
     public function getJumlahGuru()
     {

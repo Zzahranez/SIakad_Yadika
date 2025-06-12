@@ -80,7 +80,7 @@
                                                     {{ collect(explode(' ', $pt->pembelajaran->kelas->nama_kelas))->take(2)->map(fn($word) => strtoupper(substr($word, 0, 1)))->implode('') }}
                                                 </span>
                                             </div> --}}
-
+ 
                                             <div class="flex-grow-1">
                                                 <h6 class="mb-1 fw-bold">{{ $pt->materi }}</h6>
                                                 
@@ -149,13 +149,18 @@
                             @endif
 
                         </div>
+                         @include('pagination_footer_card', ['collection' => $pertemuan])
                     </div>
+                    
                 </div>
             </div>
+
+           
 
 
         </div>
         <!-- End Card Body-->
+        
     </div>
     <!-- End Card-->
 

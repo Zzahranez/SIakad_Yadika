@@ -40,16 +40,15 @@ class DatabaseSeeder extends Seeder
         // |======= DIBAWAH INI SEEDER KELAS =======|
         // |========================================|
 
-        //Relasi ke siswa harus duluan kids
-        $kelas = Kelas::firstOrCreate(['nama_kelas' => '10 A']);
 
-        $nama_kelas = ['10 B', '11 A', '11 B', '12 A', '12 B'];
+        $nama_kelas = ['10 A', '10 B', '11 A', '11 B', '12 A', '12 B'];
 
-        for ($i = 0; $i < count($nama_kelas); $i++) {
-            Kelas::create([
-                'nama_kelas' => $nama_kelas[$i],
+        foreach ($nama_kelas as $nk) {
+            Kelas::firstOrCreate([
+                'nama_kelas' => $nk
             ]);
         }
+
 
 
         // |========================================|
@@ -57,23 +56,26 @@ class DatabaseSeeder extends Seeder
         // |========================================|
 
         // Loop untuk membuat 20 data siswa dan user
+        $kelas11 = Kelas::whereIn('nama_kelas', ['11 A', '11 B'])->get()->keyBy('nama_kelas');
+
         $kelas_siswa = [
-            1 => 0,
-            2 => 0
+            '11 A' => 0,
+            '11 B' => 0
         ];
+
         for ($i = 1; $i <= 20; $i++) {
             do {
-                $kelas_id = rand(1, 2);
-            } while ($kelas_siswa[$kelas_id] >= 10); 
+                $selected_kelas = array_rand($kelas_siswa);
+            } while ($kelas_siswa[$selected_kelas] >= 10);
 
-            $kelas_siswa[$kelas_id]++; // counter
+            $kelas_siswa[$selected_kelas]++;
 
             $siswa = Siswa::create([
                 'nama' => 'Siswa ' . $i,
                 'nis_nisn' => rand(100000, 999999) . '/' . rand(100000000, 999999999),
                 'tanggal_lahir' => '2005-' . str_pad(rand(1, 12), 2, '0', STR_PAD_LEFT) . '-' . str_pad(rand(1, 28), 2, '0', STR_PAD_LEFT),
                 'jenis_kelamin' => $i % 2 == 0 ? 'laki-laki' : 'perempuan',
-                'kelas_id' => $kelas_id,
+                'kelas_id' => $kelas11[$selected_kelas]->id,
                 'alamat' => 'Alamat Siswa ' . $i,
                 'no_telp' => '08' . rand(1000000000, 9999999999),
                 'tahun_masuk' => rand(2018, 2022),
@@ -89,24 +91,24 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        $siswa = Siswa::create([
-            'nama' => 'Budi Siswa',
-            'nis_nisn' => '123456/109238912',
-            'tanggal_lahir' => '2005-05-10',
-            'jenis_kelamin' => 'laki-laki',
-            'kelas_id' => $kelas->id,
-            'alamat' => 'Pattimura',
-            'no_telp' => '097540302121',
-            'tahun_masuk' => '2019',
-        ]);
+        // $siswa = Siswa::create([
+        //     'nama' => 'Budi Siswa',
+        //     'nis_nisn' => '123456/109238912',
+        //     'tanggal_lahir' => '2005-05-10',
+        //     'jenis_kelamin' => 'laki-laki',
+        //     'kelas_id' => $kelas->id,
+        //     'alamat' => 'Pattimura',
+        //     'no_telp' => '097540302121',
+        //     'tahun_masuk' => '2019',
+        // ]);
 
-        User::create([
-            'email' => 'test@gmail.com',
-            'password' => Hash::make('admin123321'),
-            'role' => 'siswa',
-            'userable_type' => Siswa::class,
-            'userable_id' => $siswa->id,
-        ]);
+        // User::create([
+        //     'email' => 'test@gmail.com',
+        //     'password' => Hash::make('admin123321'),
+        //     'role' => 'siswa',
+        //     'userable_type' => Siswa::class,
+        //     'userable_id' => $siswa->id,
+        // ]);
 
 
         $guru = Guru::create([

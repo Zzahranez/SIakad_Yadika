@@ -169,7 +169,7 @@ class ManageUserController extends Controller
                 ->with('error', 'Gagal menambahkan user: ' . $e->getMessage());
         }
     }
-
+ 
     /**
      * Display the specified resource.
      */

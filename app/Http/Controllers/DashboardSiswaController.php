@@ -26,7 +26,7 @@ class DashboardSiswaController extends Controller
         $semesterinfo = $this->getSemesterDanTahunAkademik();
         $gurudanmapel = $this->getMapelDanGuruMengajar();
         $nilaiRataAll = $this->getNilaiRataAll();
-        $pertemuanberlangsung = $this->getPertemuanBerlangsung($siswa_id);
+        // $pertemuanberlangsung = $this->getPertemuanBerlangsung($siswa_id);
         $kehadiran = $this->getKehadiran();
         $pengumuman = $this->getPengumuman();
 
@@ -37,7 +37,7 @@ class DashboardSiswaController extends Controller
 
         $jumlahkehadirankelasperpembelajaran = $this->getJumlahKehadiranPerPembelajaranByUser();
         $data_totalpembelajaranKelas = $jumlahkehadirankelasperpembelajaran->pluck('total_kehadiran');
-   
+
         return view(
             'dashboardsiswa',
             [
@@ -47,9 +47,9 @@ class DashboardSiswaController extends Controller
                 'tahun_akademik' => $semesterinfo['tahun_akademik'],
                 'gurudanmapel' => $gurudanmapel,
                 'nilairataAll' => $nilaiRataAll,
-                'pertemuanberlangsung' => $pertemuanberlangsung,
+
                 'kehadiran' => $kehadiran,
-                'pengumuman' => $pengumuman, 
+                'pengumuman' => $pengumuman,
                 //Grafik
                 'labels' => $labels,
                 'data' => $data,
@@ -92,31 +92,37 @@ class DashboardSiswaController extends Controller
     public function getNilaiRataAll()
     {
         $siswa_id = Auth::user()->userable->id;
-        $nilai_rataAll =  Presensi::where('siswa_id', $siswa_id)->avg('nilai') ?? 0;
+        $kelas_id = Auth::user()->userable->kelas_id;
+        $nilai_rataAll =  Presensi::where('siswa_id', $siswa_id)
+        ->whereRelation('pertemuan.pembelajaran', 'kelas_id', $kelas_id)
+        ->avg('nilai');
 
         return round($nilai_rataAll, 2);
     }
 
-    public function getPertemuanBerlangsung($siswa_id)
-    {
-        return Pertemuan::with(['presensi'])
-            ->whereRelation('presensi', 'siswa_id', $siswa_id)
-            ->count();
-    }
+    // public function getPertemuanBerlangsung($siswa_id)
+    // {
+    //     return Pertemuan::with(['presensi'])
+    //         ->whereRelation('presensi', 'siswa_id', $siswa_id)
+    //         ->count();
+    // }
 
     public function getKehadiran()
     {
         $siswa_id = Auth::user()->userable->id;
+        $kelas_id = Auth::user()->userable->kelas_id;
 
         // Total pertemuan yang harus dihadiri siswa
-        $totalPertemuan = Presensi::where('siswa_id', $siswa_id)->count();
+        $totalPertemuan = Presensi::where('siswa_id', $siswa_id)
+        ->whereRelation('pertemuan.pembelajaran', 'kelas_id', $kelas_id)
+        ->count();
 
         if ($totalPertemuan == 0) {
             return 0;
         }
 
         $totalHadir = Presensi::where('siswa_id', $siswa_id)
-            ->where('status', 'hadir')
+            ->where('status', 'hadir')->whereRelation('pertemuan.pembelajaran', 'kelas_id', $kelas_id)
             ->count();
 
         $persentase = ($totalHadir / $totalPertemuan) * 100;
@@ -127,24 +133,21 @@ class DashboardSiswaController extends Controller
     //Nilai rata-rata pertemuan dari setiap kelas
     public function getNilaiRataperKelas()
     {
-        $siswa_id = Auth::user()->userable->id;
-        $kelas_id = Auth::user()->userable->kelas_id;
+        $siswa = Auth::user()->userable;
+        $kelas_id = $siswa->kelas_id;
+        $siswa_id = $siswa->id;
 
+        // Ambil semua pembelajaran di kelas siswa
         $pembelajaranKelas = Pembelajaran::with('mapel')
             ->where('kelas_id', $kelas_id)
             ->get();
 
         $hasil = $pembelajaranKelas->map(function ($pembelajaran) use ($siswa_id) {
-
-            $presensiSiswa = Presensi::where('siswa_id', $siswa_id)
-                ->whereHas('pertemuan.pembelajaran', function ($query) use ($pembelajaran) {
-                    $query->where('id', $pembelajaran->id);
+            $rataRata = Presensi::where('siswa_id', $siswa_id)
+                ->whereHas('pertemuan', function ($query) use ($pembelajaran) {
+                    $query->where('pembelajaran_id', $pembelajaran->id);
                 })
-                ->with('pertemuan.pembelajaran')
-                ->get();
-
-
-            $rataRata = $presensiSiswa->avg('nilai');
+                ->avg('nilai');
 
             return [
                 'mapel' => $pembelajaran->mapel->nama_mapel,
@@ -155,6 +158,7 @@ class DashboardSiswaController extends Controller
 
         return $hasil;
     }
+
 
 
     public function getJumlahKehadiranPerKelas()
@@ -195,9 +199,8 @@ class DashboardSiswaController extends Controller
             ->get();
     }
 
-    public function getPengumuman(){
+    public function getPengumuman()
+    {
         return Pengumuman::with('admin')->orderBy('created_at', 'desc')->paginate(3);
     }
-
-    
 }

@@ -20,39 +20,25 @@
         </div>
     </div>
 @endsection
-
+  
 @section('statscard')
 
-
-    <div class="col-12 col-sm-6 col-lg-4 mb-3">
+  
+    <div class="col-12 col-sm-6 col-lg-6 mb-3">
         <div class="card shadow-sm border-0 rounded-3 p-3 h-100">
             <div class="d-flex align-items-center">
                 <div class="icon-square bg-primary text-white rounded-circle p-3 me-3">
                     <i class="fas fa-graduation-cap fs-4"></i>
                 </div>
                 <div>
-                    <p class="text-secondary mb-1 small">Presentase keseluruhan nilai siswa per pertemuan</p>
-                    <h3 class="fw-bold mb-0 display-8">{{ $presentase_nilaiSiswa }} %</h3>
+                    <p class="text-secondary mb-1 small">Rata-rata nilai pertemuan siswa</p>
+                    <h3 class="fw-bold mb-0 display-8">{{ $rata_rata_nilai_siswa }}</h3>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-12 col-sm-6 col-lg-4 mb-3">
-        <div class="card shadow-sm border-0 rounded-3 p-3 h-100">
-            <div class="d-flex align-items-center">
-                <div class="icon-square bg-warning text-white rounded-circle p-3 me-3">
-                    <i class="fas fa-book fs-4"></i>
-                </div>
-                <div>
-                    <p class="text-secondary mb-1 small">Pertemuan berlangsung yang yang anda ajar</p>
-                    <h3 class="fw-bold mb-0 display-8 ">{{ $jmlh_pertemuan }}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-12 col-sm-6 col-lg-4 mb-3">
+    <div class="col-12 col-sm-6 col-lg-6 mb-3">
         <div class="card shadow-sm border-0 rounded-3 p-3 h-100">
             <div class="d-flex align-items-center">
                 <div class="icon-square bg-success text-white rounded-circle p-3 me-3">
@@ -87,7 +73,7 @@
                     Nilai pertemuan
                     siswa teringgi terbaru
                 </h5>
-
+ 
                 <div style="max-height: 320px; overflow-y: auto;">
                     @foreach ($nilai as $item)
                         <div class="mb-3 p-3 bg-light rounded shadow-sm">

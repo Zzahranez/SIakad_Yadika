@@ -16,7 +16,6 @@ class JadwalDanPresensiController extends Controller
     {
         $guru_login = Auth::user()->userable;
 
-
         // Ambil semua ID pembelajaran milik guru
         $pembelajaranIds = Pembelajaran::where('guru_id', $guru_login->id)->pluck('id');
 
@@ -26,13 +25,12 @@ class JadwalDanPresensiController extends Controller
             ->where('guru_id', $guru_login->id)
             ->paginate(6);
 
-        // Ambil semua pertemuan berdasarkan semua pembelajaran guru
+        //Ke Dosen
         $pertemuan = Pertemuan::with(['pembelajaran.kelas', 'pembelajaran.mapel'])
+            ->where('created_at', '>=', now()->subMinute(3))
             ->whereIn('pembelajaran_id', $pembelajaranIds)
             ->latest()
             ->paginate(7); 
-
-
 
         return view('guru.jadwaldanpresensi', [
             'pembelajaran' => $pembelajaran,

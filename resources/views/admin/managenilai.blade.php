@@ -33,6 +33,54 @@
 
         <!-- Card Body -->
         <div class="card-body p-4">
+            <!-- Filter Pertemuan -->
+            <div class=" px-4">
+                <!-- Form Filter -->
+                <form action="{{ route('filter.nilai') }}" method="GET" class="row g-3 mb-4">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label for="siswa_id" class="form-label">Nama Siswa</label>
+                            <input type="text" name="siswa_id" class=" form-control" value="{{ request('siswa_id') }}" placeholder="Tanpa Filter">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="guru_id" class="form-label">Guru</label>
+                            <select name="guru_id" id="guru_id" class="form-control">
+                                <option value="">Tanpa Filter</option>
+                                @foreach ($guru as $gr)
+                                    <option value="{{ $gr->id }}"
+                                        {{ request('guru_id') == $gr->id ? 'selected' : '' }}>{{ $gr->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="kelas_id" class="form-label">Kelas</label>
+                            <select name="kelas_id" id="kelas_id" class="form-control">
+                                <option value="">Tanpa Filter</option>
+                                @foreach ($kelas as $k)
+                                    <option value="{{ $k->id }}"
+                                        {{ request('kelas_id') == $k->id ? 'selected' : '' }}>{{ $k->nama_kelas }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="tanggal" class="form-label">Tanggal</label>
+                            <input type="date" class=" form-control" name="tanggal" value="{{ request('tanggal') }}">
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 ms-auto d-flex justify-content-end gap-2">
+                        <button type="submit" class="btn bg-birumantap text-white hover-smooth w-50">Filter</button>
+                        <a href="{{ route('managenilai.index') }}"
+                            class="btn btn-secondary text-white hover-smooth w-50">Reset</a>
+                    </div>
+                </form>
+
+            </div>
+            <!-- End Filter Pertemuan -->
             <div class="table-responsive">
                 <table class="table table-striped table-hover align-middle table-borderless mb-0 shadow-sm">
                     <thead class="table-light">
@@ -68,8 +116,8 @@
                                 </td>
                                 <td class="px-4 py-3 text-center">{{ $item->pertemuan->pembelajaran->guru->nama }}</td>
                                 <td class="px-4 py-3 text-center">
-                                    <a href="{{route('managenilai.show', $item->id)}}" class="btn btn-sm btn-outline-primary me-1 hover-smooth"
-                                        title="Edit Data">
+                                    <a href="{{ route('managenilai.show', $item->id) }}"
+                                        class="btn btn-sm btn-outline-primary me-1 hover-smooth" title="Edit Data">
                                         <i class="bi bi-pencil-square"></i> <span class="d-none d-md-inline">Edit</span>
                                     </a>
                                     <a href="#" class="btn btn-sm btn-outline-danger hover-smooth"

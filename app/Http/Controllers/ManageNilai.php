@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
+use App\Models\Kelas;
 use App\Models\Presensi;
 use Illuminate\Http\Request;
 
@@ -12,8 +14,12 @@ class ManageNilai extends Controller
     {
         $presensi = Presensi::with(['siswa', 'pertemuan.pembelajaran.kelas', 'pertemuan.pembelajaran.mapel', 'pertemuan.pembelajaran.guru'])
             ->whereNotNull('nilai')->paginate(15);
+        $kelas = Kelas::all();
+        $guru = Guru::all();
         return view('admin.managenilai', [
             'data' => $presensi,
+            'guru' => $guru,
+            'kelas' => $kelas
         ]);
     }
 

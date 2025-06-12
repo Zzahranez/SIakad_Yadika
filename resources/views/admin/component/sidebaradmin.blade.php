@@ -5,13 +5,6 @@
      style="width: 250px; min-height: 80vh; max-height: 90vh; margin-top: -210px; background-color: #3c6399">
 
 
-     <!-- Logo & Judul -->
-     {{-- <div class="d-flex align-items-center mt-2">
-     <img src="SMA_yayasandika-removebg-preview.png" alt="Logo" width="40" height="40" class="me-2">
-     <div class="mb3" style="font-size: 22px; font-family:'Times New Roman', Times, serif;">
-         Siakad Yadika
-     </div>
- </div> --}}
      <!-- Foto Profil -->
      <div class="text-center mt-2">
          <img src="{{ asset('storage/profile_admin/' . (Auth::user()->userable->foto_profile ?? 'default-profile.jpg')) }}"
@@ -33,9 +26,6 @@
              </a>
          </li>
 
-
-
-         <!-- HTML - Menu Dropdown dengan indikator active -->
          {{-- DropDown akademik --}}
          <li class="nav-item dropdown">
              <a href="#"

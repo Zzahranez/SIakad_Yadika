@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pembelajaran;
 use App\Models\Pengumuman;
 use App\Models\Pertemuan;
 use App\Models\Presensi;
@@ -19,18 +20,13 @@ class DashboardGuruController extends Controller
         $pengumuman = $this->getPengumuman();
 
         //StatsCard
-        $jmlh_pertemuan = $this->getPertemuanBerlangsung();
+
         $presentase_kehadiran = $this->getPresentaseKehadiranKelas();
-        $presentase_Nilai = $this->getRataNilaiSiswaPertemuan($guru_id);
+        $rata_rata_nilai = $this->getRataNilaiSiswaPertemuan($guru_id);
 
         //Grafik
         $nilaipermapel = $this->getNilaiRataSiswaPerMapel($guru_id);
         $trendData = $this->getTrendNilai();
-
-        // $labels_line = $trendData['labels'];
-        // $data_line = $trendData['data'];
-
-        // dd($labels_line, $data_line);
 
         //Table
         $nilai = $this->getNilaiDanPertemuanTerbaru($guru_id);
@@ -39,9 +35,8 @@ class DashboardGuruController extends Controller
             'nama_user' => $nama_user,
             'semester' => $tahunandSemester['semester'],
             'tahun_akademik' => $tahunandSemester['tahun_akademik'],
-            'jmlh_pertemuan' => $jmlh_pertemuan,
             'presentase_kehadiran' => $presentase_kehadiran,
-            'presentase_nilaiSiswa' => $presentase_Nilai,
+             'rata_rata_nilai_siswa' => $rata_rata_nilai,
             'pengumuman' => $pengumuman,
             //Grafik
             'labels_pie' => $nilaipermapel->pluck('mapel')->values()->all(),
@@ -75,23 +70,17 @@ class DashboardGuruController extends Controller
         ];
     }
 
-    public function getPertemuanBerlangsung()
-    {
-        $guru_id = Auth::user()->userable->id;
-        return Pertemuan::with('pembelajaran')
-            ->whereRelation('pembelajaran', 'guru_id', $guru_id)
-            ->count();
-    }
-
     public function getPresentaseKehadiranKelas()
     {
         $guru_id = Auth::user()->userable->id;
 
         $totalPresensi = Presensi::with(['pertemuan.pembelajaran'])
+            ->whereRelation('pertemuan', 'status', 'sedang_berlangsung')
             ->whereRelation('pertemuan.pembelajaran', 'guru_id', $guru_id)
             ->count();
 
         $jumlahHadir = Presensi::with('pertemuan.pembelajaran')
+            ->whereRelation('pertemuan', 'status', 'sedang_berlangsung')
             ->whereRelation('pertemuan.pembelajaran', 'guru_id', $guru_id)
             ->where('status', 'hadir')
             ->count();
@@ -101,35 +90,39 @@ class DashboardGuruController extends Controller
         return $presentase;
     }
 
-    public function getRataNilaiSiswaPertemuan($id)
+    public function getRataNilaiSiswaPertemuan($guru_id)
     {
-
-        $rataRataNilai = Presensi::whereNotNull('nilai')
-            ->whereRelation('pertemuan.pembelajaran', 'guru_id', $id)
-            ->avg('nilai');
-
-        return round($rataRataNilai, 2); // dib
+        return round(
+            Presensi::whereNotNull('nilai')
+                ->whereRelation('pertemuan', 'status', 'sedang_berlangsung')
+                ->whereRelation('pertemuan.pembelajaran', 'guru_id', $guru_id)
+                ->avg('nilai') ?? 0,
+            2
+        );
     }
-    //Grafik
+
+    // Grafik
     public function getNilaiRataSiswaPerMapel($id)
     {
-
-        $presensi =  Presensi::with(['pertemuan.pembelajaran.mapel'])
+        $presensi = Presensi::with(['pertemuan.pembelajaran.mapel'])
+            ->whereRelation('pertemuan', 'status', 'sedang_berlangsung')
             ->whereRelation('pertemuan.pembelajaran', 'guru_id', $id)
             ->get();
 
         $perMapel = $presensi->groupBy(function ($item) {
-            return $item->pertemuan->pembelajaran->mapel->nama_mapel;
+            return $item->pertemuan->pembelajaran->mapel->nama_mapel ?? 'Tidak Diketahui';
         });
+
         $hasil = $perMapel->map(function ($item, $mapel) {
             $total = $item->sum('nilai');
             $jumlahsiswa = $item->count();
 
             return [
                 'mapel' => $mapel,
-                'Rata-rata' => round($total / $jumlahsiswa, 2),
+                'Rata-rata' => $jumlahsiswa > 0 ? round($total / $jumlahsiswa, 2) : 0,
             ];
         });
+
         return $hasil->values();
     }
 
@@ -138,7 +131,10 @@ class DashboardGuruController extends Controller
         $guruId = Auth::user()->userable->id;
 
         $trend = Presensi::selectRaw('presensi.pertemuan_id, AVG(nilai) as rata_nilai')
-            ->join('pertemuan', 'presensi.pertemuan_id', '=', 'pertemuan.id')
+            ->join('pertemuan', function ($join) {
+                $join->on('presensi.pertemuan_id', '=', 'pertemuan.id')
+                    ->where('pertemuan.status', 'sedang_berlangsung');
+            })
             ->join('pembelajaran', 'pertemuan.pembelajaran_id', '=', 'pembelajaran.id')
             ->where('pembelajaran.guru_id', $guruId)
             ->groupBy('presensi.pertemuan_id')
@@ -146,23 +142,19 @@ class DashboardGuruController extends Controller
             ->limit(70)
             ->get();
 
-
-
-        // Filter agar hanya data yang tidak null
         $filtered = $trend->filter(function ($item) {
             return !is_null($item->rata_nilai);
         });
 
         $labels = $filtered->map(function ($item) {
-            $kelas = $item->pertemuan->pembelajaran->kelas->nama_kelas ?? 'Kelas';
-            $materi = $item->pertemuan->materi ?? 'Pertemuan';
+            $pertemuan = Pertemuan::with('pembelajaran.kelas')->find($item->pertemuan_id);
 
-            // Ambil dua kata pertama dari materi (kalau terlalu panjang)
+            $kelas = $pertemuan->pembelajaran->kelas->nama_kelas ?? 'Kelas';
+            $materi = $pertemuan->materi ?? 'Pertemuan';
             $materi_singkat = implode(' ', array_slice(explode(' ', $materi), 0, 2));
 
-            return [$materi_singkat, $kelas]; // Array = multiline label
+            return [$materi_singkat, $kelas];
         })->values()->all();
-
 
         $data = $filtered->pluck('rata_nilai')->values()->all();
 
@@ -172,19 +164,27 @@ class DashboardGuruController extends Controller
         ];
     }
 
-
-    //Table
+    // Tabel
     public function getNilaiDanPertemuanTerbaru($id)
     {
-
-        $nilai_tertinggi = Presensi::with(['pertemuan.pembelajaran.mapel', 'pertemuan.pembelajaran.kelas', 'siswa'])
+        $nilai_tertinggi = Presensi::with([
+            'pertemuan.pembelajaran.mapel',
+            'pertemuan.pembelajaran.kelas',
+            'siswa'
+        ])
+            ->whereHas('pertemuan', function ($query) {
+                $query->where('status', 'sedang_berlangsung');
+            })
             ->whereRelation('pertemuan.pembelajaran', 'guru_id', $id)
-            ->orderBy('nilai', 'desc')->paginate(5);
+            ->orderByDesc('nilai')
+            ->paginate(5);
+
 
         return $nilai_tertinggi;
     }
 
-    public function getPengumuman(){
+    public function getPengumuman()
+    {
         return Pengumuman::with('admin')->orderBy('created_at', 'desc')->paginate(3);
     }
 }

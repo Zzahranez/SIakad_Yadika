@@ -24,14 +24,14 @@
 
         <li class="nav-item"><a href="{{ route('nilaisiswa.index') }}"
                 class="nav-link text-dark {{ request()->routeIs('nilaisiswa.index') ? 'active' : '' }}"><i
-                    class="fas fa-user-graduate me-2"></i><span>Lihat Dan Input Niai</span></a></li>
+                    class="fas fa-user-graduate me-2"></i><span>Lihat Dan Input Nilai</span></a></li>
 
         <li class="nav-item"><a href="{{ route('monitoringpembelajaran.index') }}"
                 class="nav-link text-dark {{ request()->routeIs('monitoringpembelajaran.index') ? 'active' : '' }}">
                 <i class="fas fa-clipboard-check me-2"></i><span>Tambah Pertemuan</span></a></li>
         <li class="nav-item"><a href="{{ route('JadwalPresensiGuru.index') }}"
                 class="nav-link text-dark {{ request()->routeIs('JadwalPresensiGuru.index') ? 'active' : '' }}">
-                <i class="fas fa-calendar-alt me-2"></i><span>Pertemuan dan jadwal presensi</span></a></li>
+                <i class="fas fa-calendar-alt me-2"></i><span>Jadwal Dan Edit Presensi</span></a></li>
 
         <li class="nav-item mt-5">
             <form action="{{ route('logoutproses') }}" method="POST" class="d-inline">

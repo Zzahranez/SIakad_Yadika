@@ -25,6 +25,61 @@
                 </ul>
             </div>
         @endif
+        <!-- Filter Pertemuan -->
+        <div class=" px-4">
+            <!-- Form Filter -->
+            <form action="{{ route('filter.pertemuan') }}" method="GET" class="row g-3 mb-4">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="guru_id" class="form-label">Guru</label>
+                        <select name="guru_id" id="guru_id" class="form-control">
+                            <option value="">Tanpa Filter</option>
+                            @foreach ($guru as $dt)
+                                <option value="{{ $dt->id }}">
+                                    {{ $dt->nama }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="kelas_id" class="form-label">Kelas</label>
+                        <select name="kelas_id" id="kelas_id" class="form-control">
+                            <option value="">Tanpa Filter</option>
+                            @foreach ($kelas as $ks)
+                                <option value="{{ $ks->id }}">
+                                    {{ $ks->nama_kelas }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="mapel_id" class="form-label">Mata Pelajaran</label>
+                        <select name="mapel_id" id="mapel_id" class="form-control">
+                            <option value="">Tanpa Filter</option>
+                            @foreach ($mapels as $mp)
+                                <option value="{{ $mp->id }}">
+                                    {{ $mp->nama_mapel }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tanggal" class="form-label">Tanggal</label>
+                        <input type="date" class=" form-control" name="tanggal" value="{{ request('tanggal') }}">
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 ms-auto d-flex justify-content-end gap-2">
+                    <button type="submit" class="btn bg-birumantap text-white hover-smooth w-50">Filter</button>
+                    <a href="{{ route('managepembelajaran.index') }}"
+                        class="btn btn-secondary text-white hover-smooth w-50">Reset</a>
+                </div>
+            </form>
+        </div>
+        <!-- End Filter Pertemuan -->
         <div class="table-responsive">
             <table class="table table-striped table-hover align-middle table-borderless mb-0">
                 <thead class="table-light">
@@ -32,6 +87,7 @@
                         <th scope="col" class="px-4 py-3 rounded-start">No</th>
                         <th scope="col" class="px-4 py-3">Guru Mengajar</th>
                         <th scope="col" class="px-4 py-3">Kelas</th>
+                        <th scope="col" class="px-4 py-3">Mata Pelajaran</th>
                         <th scope="col" class="px-4 py-3">tanggal</th>
                         <th scope="col" class="px-4 py-3">Jam Mulai</th>
                         <th scope="col" class="px-4 py-3">Jam Selesai</th>
@@ -46,6 +102,7 @@
                             <th scope="row" class="px-4">{{ $loop->iteration }}</th>
                             <td class="px-4">{{ $pt->pembelajaran->guru->nama }}</td>
                             <td class="px-4">{{ $pt->pembelajaran->kelas->nama_kelas }}</td>
+                            <td class="px-4">{{ $pt->pembelajaran->mapel->nama_mapel }}</td>
                             <td class="px-4">
                                 {{ \Carbon\Carbon::parse($pt->tanggal)->format('d-m-Y') }}</td>
                             <td class="px-4">
@@ -62,7 +119,8 @@
                                         <i class="fas fa-edit"></i>
                                     </button>
                                     <button type="button" class="btn btn-sm btn-outline-danger px-3"
-                                        data-bs-toggle="modal" data-bs-target="#hapusPertemuanModal-{{$pt->id}}" title="Hapus">
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#hapusPertemuanModal-{{ $pt->id }}" title="Hapus">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
@@ -79,7 +137,7 @@
     </div>
 
     <!-- Card Footer -->
-        @include('pagination_footer_card', ['collection' => $pertemuan])
+    @include('pagination_footer_card', ['collection' => $pertemuan])
     <!-- End Card Footer -->
 </div>
 {{-- End Card --}}

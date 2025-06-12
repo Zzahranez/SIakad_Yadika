@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'Admin | Mata Pelajaran')
+@section('title', 'Admin | Akademik')
 
 @section('sidebar')
     <!-- Sidebar -->
@@ -17,7 +17,7 @@
     @include('session.session_pop')
 @endsection
 
-
+ 
 
 @section('Table')
     <div class="container mt-3">
@@ -36,7 +36,7 @@
                         <button class="nav-link text-dark" id="PertemuanDaftarTab-tab" data-bs-toggle="tab"
                             data-bs-target="#PertemuanDaftarTab" type="button" role="tab"
                             aria-controls="PertemuanDaftarTab" aria-selected="false">
-                            <i class="fas fa-chalkboard me-2"></i>Pertemuan Kelas
+                            <i class="fas fa-chalkboard me-2"></i>Pertemuan
                         </button>
                     </li>
                 </ul>
@@ -70,7 +70,6 @@
                 '#pembelajaranTabs button[data-bs-toggle="tab"]'))
             var tabTrigger;
 
-            // Aktifkan tab terakhir yang disimpan di localStorage
             var activeTabId = localStorage.getItem('activeTabPembelajaran')
             if (activeTabId) {
                 tabTrigger = triggerTabList.find(btn => btn.id === activeTabId);
@@ -80,7 +79,6 @@
                 }
             }
 
-            // Setiap klik tab, simpan id tab ke localStorage
             triggerTabList.forEach(function(btn) {
                 btn.addEventListener('shown.bs.tab', function(event) {
                     localStorage.setItem('activeTabPembelajaran', event.target.id)

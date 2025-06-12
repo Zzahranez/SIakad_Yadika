@@ -45,16 +45,16 @@
                 <ul class="list-group list-group-flush">
                     <!-- FOREACH LOOP DIMULAI DI SINI -->
                     @foreach ($pembelajaran as $pb)
-                        <li class="list-group-item p-3 hover-glow mb-2"
-                            onmouseover="this.classList.add('bg-primary-subtle', 'border-start', 'border-primary', 'border-3'); this.querySelector('.hidden-badge').classList.remove('d-none')"
-                            onmouseout="this.classList.remove('bg-primary-subtle', 'border-start', 'border-primary', 'border-3'); this.querySelector('.hidden-badge').classList.add('d-none')">
+                        <li class="list-group-item p-3 hover-glow mb-2 border"
+                            onmouseover="this.classList.add('border-birumantap'); this.querySelector('.hidden-badge').classList.remove('d-none')"
+                            onmouseout="this.classList.remove('border-birumantap'); this.querySelector('.hidden-badge').classList.add('d-none')">
                             <a href="{{ route('presensidannilai.show', $pb->id) }}"
                                 class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center text-decoration-none text-dark">
 
                                 <!-- Bagian Kiri dengan Icon -->
                                 <div class="d-flex align-items-center">
                                     <!-- Icon Subject Area -->
-                                    <div class="me-3 text-primary">
+                                    <div class="me-3 text-birumantap">
                                         <i class="fas fa-book-open fs-4"></i>
                                     </div>
 
@@ -72,11 +72,11 @@
 
                                 <!-- Bagian Kanan -->
                                 <div class="mt-2 mt-md-0 d-flex align-items-center text-muted" style="font-size: 0.85rem;">
-                                    <span class="badge bg-primary text-white me-2 d-none hidden-badge">
+                                    <span class="badge bg-birumantap text-white me-2 d-none hidden-badge">
                                         <i class="fas fa-eye me-1"></i>Lihat Detail
                                     </span>
                                     <i class="fas fa-calendar-alt me-1"></i>
-                                    Jumlah Pertemuan: {{ $pb->total_pertemuan }}
+                                    Jumlah Pertemuan: {{ $pb->total_pertemuan ?? 'Belum ada pertemuan' }}
                                     <i class="fas fa-chevron-right ms-2"></i>
                                 </div>
                             </a>

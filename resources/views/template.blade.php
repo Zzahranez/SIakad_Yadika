@@ -296,7 +296,7 @@
         }
 
         .hover-glow:hover {
-            box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+            box-shadow: 0 0 20px #1b4577;
             transform: scale(1.02);
         }
 
@@ -308,6 +308,15 @@
             background-color: #1b4577 ! important;
             text-color: white !important;
         }
+
+        .border-birumantap {
+            border: 3px solid #1b4577 !important;
+        }
+        .text-birumantap{
+            color: #225b9f ! important;
+        }
+
+
 
         .bg-sidebar {
             border-radius: 8px;

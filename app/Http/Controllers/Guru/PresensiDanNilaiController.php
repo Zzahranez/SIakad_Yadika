@@ -24,12 +24,12 @@ class PresensiDanNilaiController extends Controller
 
     public function getPembelajaran($id)
     {
-        $pembelajaran = Pembelajaran::with(['kelas', 'mapel', 'pertemuan'])
+        $pembelajaran = Pembelajaran::with(['kelas', 'mapel', 'guru'])
             ->where('guru_id', $id)
+            ->withCount(['pertemuan as total_pertemuan_aktif' => function ($query) {
+                $query->where('status', 'sedang_berlangsung');
+            }])
             ->get();
-        $pembelajaran->each(function ($item) {
-            $item->total_pertemuan = $item->pertemuan->count();
-        });
         return [
             'pembelajaran' => $pembelajaran,
         ];
@@ -38,17 +38,24 @@ class PresensiDanNilaiController extends Controller
     public function show($id)
     {
         $guru_id = Auth::user()->userable->id;
-        $pembelajaran = Pembelajaran::with(['kelas.siswa', 'mapel', 'pertemuan.presensi'])
+
+        $pembelajaran = Pembelajaran::with([
+            'kelas.siswa',
+            'mapel',
+            'guru',
+            'pertemuan.presensi' // agar presensi bisa diakses langsung
+        ])
+            ->where('id', $id)
             ->where('guru_id', $guru_id)
-            ->findOrFail($id);
+            ->firstOrFail();
 
-        // Total pertemuan
-        $totalPertemuan = $pembelajaran->pertemuan->count();
+        $pertemuanAktif = $pembelajaran->pertemuan->where('status', 'sedang_berlangsung');
+        $totalPertemuan = $pertemuanAktif->count();
 
-        // Ambil siswa dari kelas terkait
+        // Ambil semua siswa dari kelas
         $siswaList = $pembelajaran->kelas->siswa;
 
-        // Persiapkan statistik presensi per siswa
+        // Inisialisasi statistik
         $presensiPerSiswa = [];
         $totalHadir = 0;
         $totalIzin = 0;
@@ -56,27 +63,27 @@ class PresensiDanNilaiController extends Controller
 
         foreach ($siswaList as $siswa) {
             $hadir = 0;
-            $alpa = 0;
             $izin = 0;
-            $nilai = 0;
-
+            $alpa = 0;
             $totalNilai = 0;
             $jumlahNilai = 0;
 
-            foreach ($pembelajaran->pertemuan as $pertemuan) {
+            foreach ($pertemuanAktif as $pertemuan) {
                 $presensi = $pertemuan->presensi->firstWhere('siswa_id', $siswa->id);
 
-                if ($presensi->status == 'hadir') {
-                    $hadir++;
-                } elseif ($presensi->status == 'izin') {
-                    $izin++;
-                } elseif ($presensi->status == 'alpa') {
-                    $alpa++;
-                }
+                if ($presensi) {
+                    if ($presensi->status === 'hadir') {
+                        $hadir++;
+                    } elseif ($presensi->status === 'izin') {
+                        $izin++;
+                    } elseif ($presensi->status === 'alpa') {
+                        $alpa++;
+                    }
 
-                if ($presensi && is_numeric($presensi->nilai)) {
-                    $totalNilai += $presensi->nilai;
-                    $jumlahNilai++;
+                    if (is_numeric($presensi->nilai)) {
+                        $totalNilai += $presensi->nilai;
+                        $jumlahNilai++;
+                    }
                 }
             }
 
@@ -91,14 +98,10 @@ class PresensiDanNilaiController extends Controller
                 'hadir' => $hadir,
                 'izin' => $izin,
                 'alpa' => $alpa,
-                'nilai' => $nilai,
                 'totalNilai' => $totalNilai,
                 'rata-rata' => $rataRataNilai,
             ];
         }
-
-        
-
 
         return view('guru.presensidannilai.details_presensi_dan_nilai', [
             'pembelajaran' => $pembelajaran,

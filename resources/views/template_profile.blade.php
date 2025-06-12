@@ -208,8 +208,6 @@
 
 
     <div class="container py-5">
-
-
         <!-- Profile Header -->
         <div class="profile-header animate__animated animate__fadeIn mb-4">
             <div class="container">

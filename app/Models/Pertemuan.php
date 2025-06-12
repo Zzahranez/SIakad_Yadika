@@ -15,6 +15,7 @@ class Pertemuan extends Model
         'jam_mulai',
         'jam_selesai',
         'materi',
+        'status',
     ];
 
     // Pertemuan milik tabel pembelajaran
