@@ -12,6 +12,7 @@
 3. Masukkan perintah berikut:
    ```bash
    git clone https://github.com/Zzahranez/SIakad_Yadika.git
+   ```
 
 ### 🗃️ Database "Bisa tidak diunduh"
 Unduh database di link berikut:
@@ -34,7 +35,8 @@ Masuk ke direktori project (cd SIakad_Yadika) melalui terminal atau buka di VS C
 
 Jalankan:
 ```bash
-    composer install ```
+    composer install 
+```
 ```bash
     php artisan key:generate 
 ```
