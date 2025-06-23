@@ -1,8 +1,8 @@
 # 🧾 SIAKAD YADIKA
 
-|=====================|  
+|=========================|  
 |===== SIAKAD YADIKA =====|  
-|=====================|
+|=========================|
 
 ## 🧪 Testing dan Tata Cara — Mohon dibaca!
 
@@ -33,9 +33,17 @@ Pastikan semua langkah di atas selesai.
 Masuk ke direktori project (cd SIakad_Yadika) melalui terminal atau buka di VS Code.
 
 Jalankan:
-composer install
+```bash
+    composer install ```
+```bash
+    php artisan key:generate 
+```
+```bash
 php artisan migrate
+```
+```bash
 php artisan serve
+```
 Akses link yang ditampilkan di terminal.
 
 📍 Mendalo, 9 Juni 2025
