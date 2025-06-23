@@ -1,3 +1,49 @@
+# 🧾 SIAKAD YADIKA
+
+|=====================|  
+|===== SIAKAD YADIKA =====|  
+|=====================|
+
+## 🧪 Testing dan Tata Cara — Mohon dibaca!
+
+### 💻 Cara Clone:
+1. Pastikan Git sudah terinstal.
+2. Buka terminal atau Git Bash.
+3. Masukkan perintah berikut:
+   ```bash
+   git clone https://github.com/Zzahranez/SIakad_Yadika.git
+
+### 🗃️ Database "Bisa tidak diunduh"
+Unduh database di link berikut:
+Download Database SIAKAD YADIKA
+
+Setelah diunduh, import ke server localhost (XAMPP atau Laragon).
+
+
+### ✅ Syarat Agar Jalan
+Gunakan PHP versi 8.2.x.
+
+Sesuaikan versi XAMPP/Laragon.
+Unduh XAMPP versi 8.2.12 di sini:
+Download XAMPP 8.2.12
+
+### ⚙️ Tata Cara Menjalankan Project
+Pastikan semua langkah di atas selesai.
+
+Masuk ke direktori project (cd SIakad_Yadika) melalui terminal atau buka di VS Code.
+
+Jalankan:
+composer install
+php artisan migrate
+php artisan serve
+Akses link yang ditampilkan di terminal.
+
+📍 Mendalo, 9 Juni 2025
+
+Zahran Ezaldi
+F1E122102
+Project Manager & Programmer
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
