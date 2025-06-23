@@ -27,7 +27,7 @@ class JadwalDanPresensiController extends Controller
 
         //Ke Dosen
         $pertemuan = Pertemuan::with(['pembelajaran.kelas', 'pembelajaran.mapel'])
-            ->where('created_at', '>=', now()->subMinute(3))
+            ->where('created_at', '>=', now()->subDay(7))
             ->whereIn('pembelajaran_id', $pembelajaranIds)
             ->latest()
             ->paginate(7); 

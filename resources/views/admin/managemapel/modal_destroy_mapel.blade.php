@@ -4,7 +4,7 @@
         <div class="modal-content">
             <!-- Header -->
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle-{{ $mapel_item->id }}">Edit Mapel</h5>
+                <h5 class="modal-title" id="modalTitle-{{ $mapel_item->id }}">Hapus Mata Pelajaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{route('managemapel.destroy', $mapel_item->id)}}" method="POSt">

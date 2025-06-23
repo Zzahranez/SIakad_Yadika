@@ -70,7 +70,7 @@
             <form method="POST" action="{{ route('nilaisiswa.store', $pertemuan->id) }}">
                 @csrf
 
-                <!-- Quick Actions -->
+                <!-- Quick Actions 
                 <div class="mb-3">
                     <div class="row g-2">
                         <div class="col-auto">
@@ -95,7 +95,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <!-- List Siswa -->
                 <div class="list-group list-group-flush mb-4">

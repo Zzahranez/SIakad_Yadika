@@ -207,7 +207,7 @@ class DatabaseSeeder extends Seeder
         $used = [];
         for ($i = 0; $i < 14; $i++) {
             do {
-                $kelas_id = rand(1, 2);
+                $kelas_id = rand(3, 4);
                 $mapel_id = rand(1, 7);
                 $guru_id = rand(1, 2);
                 $key = "$guru_id-$kelas_id-$mapel_id";

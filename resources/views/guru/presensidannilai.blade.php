@@ -76,7 +76,7 @@
                                         <i class="fas fa-eye me-1"></i>Lihat Detail
                                     </span>
                                     <i class="fas fa-calendar-alt me-1"></i>
-                                    Jumlah Pertemuan: {{ $pb->total_pertemuan ?? 'Belum ada pertemuan' }}
+                                    Jumlah Pertemuan:  {{$pb->total_pertemuan_aktif ?? 'Belum Ada pertemuan'}}
                                     <i class="fas fa-chevron-right ms-2"></i>
                                 </div>
                             </a>

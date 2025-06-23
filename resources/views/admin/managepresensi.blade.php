@@ -27,11 +27,11 @@
                 <i class="fas fa-tasks me-2"></i> Daftar Presensi
 
             </h4>
-            <button type="button" class="btn btn-light d-flex align-items-center gap-2 hover-smooth" data-bs-toggle="modal"
+            {{-- <button type="button" class="btn btn-light d-flex align-items-center gap-2 hover-smooth" data-bs-toggle="modal"
                 data-bs-target="#tambahPembelajaranModal">
                 <i class="fas fa-plus-circle"></i>
                 <span>Tambah</span>
-            </button>
+            </button> --}}
         </div>
 
         <!-- Card Body -->

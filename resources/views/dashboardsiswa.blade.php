@@ -27,7 +27,7 @@
 @section('statscard')
 
     <!-- Stats Cards -->
-    <div class="col-12 col-sm-6 col-lg-6 mb-3">
+    {{-- <div class="col-12 col-sm-6 col-lg-6 mb-3">
         <div class="card shadow-sm border-0 rounded-3 p-3 h-100">
             <div class="d-flex align-items-center">
                 <div class="icon-square bg-primary text-white rounded-circle p-3 me-3">
@@ -39,9 +39,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="col-12 col-sm-6 col-lg-6 mb-3">
+    <div class="col-12 col-sm-6 col-lg-12 mb-3">
         <div class="card shadow-sm border-0 rounded-3 p-3 h-100">
             <div class="d-flex align-items-center">
                 <div class="icon-square bg-success text-white rounded-circle p-3 me-3">

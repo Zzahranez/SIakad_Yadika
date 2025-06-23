@@ -4,7 +4,7 @@
          <div class="modal-content">
              <!-- Header -->
              <div class="modal-header">
-                 <h5 class="modal-title" id="modalTitle-#">Edit Pertemuan
+                 <h5 class="modal-title" id="modalTitle-#">Edit Presensi
                  </h5>
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
              </div>

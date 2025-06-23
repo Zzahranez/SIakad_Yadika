@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
 <script>
     document.getElementById('kelas_id').addEventListener('change', function() {
         let kelasId = this.value;

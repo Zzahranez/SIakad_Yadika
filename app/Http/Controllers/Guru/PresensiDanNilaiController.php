@@ -16,6 +16,7 @@ class PresensiDanNilaiController extends Controller
         $guru_id = Auth::user()->userable->id;
         $pembelajaran = $this->getPembelajaran($guru_id);
 
+
         return view('guru.presensidannilai', [
             'pembelajaran' => $pembelajaran['pembelajaran'],
 
