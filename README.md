@@ -35,10 +35,10 @@ Masuk ke direktori project (cd SIakad_Yadika) melalui terminal atau buka di VS C
 
 Jalankan:
 ```bash
-    composer install 
+composer install 
 ```
 ```bash
-    php artisan key:generate 
+php artisan key:generate 
 ```
 ```bash
 php artisan migrate
